@@ -16,7 +16,7 @@ public class CropCraft
 {
     public static final String MODID = "cropcraft";
     public static final String NAME = "CropCraft";
-    public static final String VERSION = "0.0.1";
+    public static final String VERSION = "0.0.3";
 
     @SidedProxy(clientSide = "weird0cats.cropcraft.proxy.ClientProxy",serverSide = "weird0cats.cropcraft.proxy.ServerProxy")
     public static CommonProxy proxy;
