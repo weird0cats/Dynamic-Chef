@@ -2,6 +2,7 @@ package com.weird0cats.cropcraft.proxy;
 
 import com.weird0cats.cropcraft.*;
 import com.weird0cats.cropcraft.blocks.*;
+import com.weird0cats.cropcraft.items.*;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -56,5 +57,6 @@ public class CommonProxy {
     public static void registerItems(RegistryEvent.Register<Item> event)
     {
         event.getRegistry().register(new ItemBlock(ModBlocks.cookingPot).setRegistryName(ModBlocks.cookingPot.getRegistryName()));
+        event.getRegistry().register(new LupaBerry());
     }
 }

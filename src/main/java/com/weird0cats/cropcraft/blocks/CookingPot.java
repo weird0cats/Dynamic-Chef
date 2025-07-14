@@ -12,7 +12,7 @@ public class CookingPot extends Block
     public CookingPot()
     {
         super(Material.ROCK);
-        //setUnlocalizedName(CropCraft.MODID + ".cookingpot");
+        setTranslationKey(CropCraft.MODID + ".cookingpot"); //no wormk :(
         setRegistryName("cookingpot");
     }
 }
