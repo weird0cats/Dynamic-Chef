@@ -9,7 +9,7 @@ REQUIREMENTS:
 PLANS
 - Adding ducks to the game
 - Implementing a cooking system, throw things in the pot and see what you get!
-- Adding a couple crops(rice, tomatoes) ==MIGHT NOT DO==
+- Adding some new crops, Like the Lupa berry, makes a good alternative to the tomato!
 - Other mod compatibility
     - rustic
     - Pam's harvestcraft(maybe)
