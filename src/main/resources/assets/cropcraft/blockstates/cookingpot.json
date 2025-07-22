@@ -1,0 +1,16 @@
+{
+    "forge_marker":1,
+    "defaults":
+    {
+        "custom": {"flip-v":true},
+        "model": "cropcraft:cookingpot.obj",
+        "textures":{
+            "#Potsu":"cropcraft:blocks/cookingpot"
+        }
+    },
+    "variants":
+    {
+        "normal":[{}],
+        "inventory":[{}]
+    }
+}

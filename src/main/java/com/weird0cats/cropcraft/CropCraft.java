@@ -1,8 +1,11 @@
 package com.weird0cats.cropcraft;
 
 import com.weird0cats.cropcraft.proxy.CommonProxy;
+import com.weird0cats.cropcraft.CropCraftTab;
 
 import net.minecraft.init.Blocks;
+import net.minecraft.creativetab.CreativeTabs;
+
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.Mod.EventHandler;
@@ -25,6 +28,7 @@ public class CropCraft
     public static CropCraft instance;
 
     public static Logger logger;
+    public static CreativeTabs modTab = new CropCraftTab();
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
@@ -44,3 +48,4 @@ public class CropCraft
         proxy.postInit(e);
     }
 }
+
