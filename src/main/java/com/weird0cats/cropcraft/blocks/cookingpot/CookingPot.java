@@ -32,6 +32,8 @@ public class CookingPot extends Block
         super(Material.ROCK);
         setTranslationKey(CropCraft.MODID + ".cookingpot"); //WORMK! :D
         setRegistryName("cookingpot");
+        setCreativeTab(CropCraft.modTab);
+
     }
 
     @Override

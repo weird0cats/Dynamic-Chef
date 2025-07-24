@@ -57,7 +57,8 @@ public class CommonProxy {
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event)
     {
-        event.getRegistry().register(new LupaBerry(2,2));
+        event.getRegistry().register(new LupaBerry(2,0.4f));
+        event.getRegistry().register(new VitusBerry(2,0.4f));
 
         event.getRegistry().register(new ItemBlock(ModBlocks.cookingPot).setRegistryName(ModBlocks.cookingPot.getRegistryName()));
 
