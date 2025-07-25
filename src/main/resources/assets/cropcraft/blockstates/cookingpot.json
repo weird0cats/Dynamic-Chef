@@ -5,7 +5,9 @@
         "custom": {"flip-v":true},
         "model": "cropcraft:cookingpot.obj",
         "textures":{
-            "#Potsu":"cropcraft:blocks/cookingpot"
+            "#Wall1":"cropcraft:blocks/wall1",
+            "#Wall2":"cropcraft:blocks/wall2",
+            "#Bottom":"cropcraft:blocks/bottom"
         }
     },
     "variants":
