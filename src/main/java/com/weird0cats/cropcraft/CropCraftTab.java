@@ -9,16 +9,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class CropCraftTab extends CreativeTabs
 {
-    public CropCraftTab()
-    {
-        super(CropCraft.MODID);
-    }
+   public CropCraftTab()
+   {
+      super(CropCraft.MODID);
+   }
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public ItemStack createIcon()
-    {
-        return new ItemStack(ModItems.lupaBerry);
-    }
-
+   @SideOnly(Side.CLIENT)
+   @Override
+   public ItemStack createIcon()
+   {
+      return new ItemStack(ModItems.lupaBerry);
+   }
 }

@@ -27,40 +27,40 @@ import java.io.File;
 
 @Mod.EventBusSubscriber
 public class CommonProxy {
-    public static Configuration config;
+   public static Configuration config;
 
-    public void preInit(FMLPreInitializationEvent e)
-    {
-        File directory = e.getModConfigurationDirectory();
-        config=new Configuration(new File(directory.getPath(), "cropcraft.cfg"));
-        Config.readConfig();
-    }
+   public void preInit(FMLPreInitializationEvent e)
+   {
+      File directory = e.getModConfigurationDirectory();
+      config = new Configuration(new File(directory.getPath(), "cropcraft.cfg"));
+      Config.readConfig();
+   }
 
-    public void init(FMLInitializationEvent e)
-    {
-    }
+   public void init(FMLInitializationEvent e)
+   {
+   }
 
-    public void postInit(FMLPostInitializationEvent e)
-    {
-        if (config.hasChanged())
-        {
-            config.save();
-        }
-    }
+   public void postInit(FMLPostInitializationEvent e)
+   {
+      if (config.hasChanged())
+      {
+         config.save();
+      }
+   }
 
-    @SubscribeEvent
-    public static void registerBlocks(RegistryEvent.Register<Block> event)
-    {
-        event.getRegistry().register(new CookingPot());
-    }
+   @SubscribeEvent
+   public static void registerBlocks(RegistryEvent.Register<Block> event)
+   {
+      event.getRegistry().register(new CookingPot());
+      GameRegistry.registerTileEntity(TileEntityCookingPot.class, CropCraft.MODID + "_cookingpotblock");
+   }
 
-    @SubscribeEvent
-    public static void registerItems(RegistryEvent.Register<Item> event)
-    {
-        event.getRegistry().register(new LupaBerry(2,0.4f));
-        event.getRegistry().register(new VitusBerry(2,0.4f));
+   @SubscribeEvent
+   public static void registerItems(RegistryEvent.Register<Item> event)
+   {
+      event.getRegistry().register(new LupaBerry(2,0.4f));
+      event.getRegistry().register(new VitusBerry(2,0.4f));
 
-        event.getRegistry().register(new ItemBlock(ModBlocks.cookingPot).setRegistryName(ModBlocks.cookingPot.getRegistryName()));
-
-    }
+      event.getRegistry().register(new ItemBlock(ModBlocks.cookingPot).setRegistryName(ModBlocks.cookingPot.getRegistryName()));
+   }
 }

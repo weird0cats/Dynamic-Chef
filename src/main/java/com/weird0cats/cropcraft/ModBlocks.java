@@ -9,12 +9,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ModBlocks
 {
-    @GameRegistry.ObjectHolder("cropcraft:cookingpot")
-    public static CookingPot cookingPot;
+   @GameRegistry.ObjectHolder("cropcraft:cookingpot")
+   public static CookingPot cookingPot;
 
-    @SideOnly(Side.CLIENT)
-    public static void initModels()
-    {
-        cookingPot.initModel();
-    }
+   @SideOnly(Side.CLIENT)
+   public static void initModels()
+   {
+      cookingPot.initModel();
+   }
 }

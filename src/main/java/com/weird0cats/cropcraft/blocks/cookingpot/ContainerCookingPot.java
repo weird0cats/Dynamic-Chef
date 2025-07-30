@@ -1,0 +1,60 @@
+package com.weird0cats.cropcraft.blocks.cookingpot;
+
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.Slot;
+import net.minecraft.entity.player.EntityPlayer;
+
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.SlotItemHandler;
+
+
+public class ContainerCookingPot extends Container 
+{
+   private TileEntityCookingPot te;
+
+   public ContainerCookingPot(IInventory playerInventory, TileEntityCookingPot te)
+   {
+      this.te=te;
+      addOwnSlots();
+      addPlayerSlots(playerInventory);
+   }
+
+   public TileEntityCookingPot getTile()
+   {
+      return te;
+   }
+
+   private void addPlayerSlots(IInventory playerInventory)
+   {
+      for (int row=0; row < 3; ++row)
+      {
+         for (int col=0; col< 9; ++col)
+         {
+            int x = 8 + col * 18;
+            int y = row * 18 + 84;
+            this.addSlotToContainer(new Slot(playerInventory, col + row * 9 + 9, x, y));
+         }
+      }
+      
+      for (int row = 0; row < 9; ++row)
+      {
+			int x = 8 + row * 18;
+			int y = 142;
+			this.addSlotToContainer(new Slot(playerInventory, row, x, y));
+		}
+   }
+
+   private void addOwnSlots()
+   {
+      IItemHandler itemHandler = this.te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.RESULT_SLOT, 105,35));
+   }
+
+   @Override
+   public boolean canInteractWith(EntityPlayer playerIn)
+   {
+      return true;
+   }
+}

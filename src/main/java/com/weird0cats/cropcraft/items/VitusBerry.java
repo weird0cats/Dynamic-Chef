@@ -12,20 +12,20 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class VitusBerry extends ItemFood
 {
-    public final float saturation;
+   public final float saturation;
 
-    public VitusBerry(int healAmount, float saturation)
-    {
-        super(healAmount, saturation, false);
-        setRegistryName("vitusberry");
-        setTranslationKey(CropCraft.MODID + ".vitusberry");
-        setCreativeTab(CropCraft.modTab);
-        this.saturation=saturation;
-    }
+   public VitusBerry(int healAmount, float saturation)
+   {
+      super(healAmount, saturation, false);
+      setRegistryName("vitusberry");
+      setTranslationKey(CropCraft.MODID + ".vitusberry");
+      setCreativeTab(CropCraft.modTab);
+      this.saturation=saturation;
+   }
 
-    @SideOnly(Side.CLIENT)
-    public void initModel()
-    {
-        ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
-    }
+   @SideOnly(Side.CLIENT)
+   public void initModel()
+   {
+      ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
+   }
 }

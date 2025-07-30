@@ -12,20 +12,20 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class LupaBerry extends ItemFood
 {
-    public final float saturation;
+   public final float saturation;
 
-    public LupaBerry(int healAmount, float saturation)
-    {
-        super(healAmount, saturation, false);
-        setRegistryName("lupaberry");
-        setTranslationKey(CropCraft.MODID + ".lupaberry");
-        setCreativeTab(CropCraft.modTab);
-        this.saturation=saturation;
-    }
+   public LupaBerry(int healAmount, float saturation)
+   {
+      super(healAmount, saturation, false);
+      setRegistryName("lupaberry");
+      setTranslationKey(CropCraft.MODID + ".lupaberry");
+      setCreativeTab(CropCraft.modTab);
+      this.saturation=saturation;
+   }
 
-    @SideOnly(Side.CLIENT)
-    public void initModel()
-    {
-        ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
-    }
+   @SideOnly(Side.CLIENT)
+   public void initModel()
+   {
+      ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(getRegistryName(), "inventory"));
+   }
 }
