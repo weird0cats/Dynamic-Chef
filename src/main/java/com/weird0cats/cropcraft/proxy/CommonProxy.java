@@ -40,7 +40,7 @@ public class CommonProxy {
 
    public void init(FMLInitializationEvent e)
    {
-      //NetworkRegistry.INSTANCE.registerGuiHandler(CropCraft.instance, new GuiProxy());
+      NetworkRegistry.INSTANCE.registerGuiHandler(CropCraft.instance, new GuiProxy());
    }
 
    public void postInit(FMLPostInitializationEvent e)
