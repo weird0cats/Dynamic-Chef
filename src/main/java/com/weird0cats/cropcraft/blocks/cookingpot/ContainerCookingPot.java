@@ -4,6 +4,7 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
@@ -50,11 +51,48 @@ public class ContainerCookingPot extends Container
    {
       IItemHandler itemHandler = this.te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
       addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.RESULT_SLOT, 105,35));
+      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.RESULT_SLOT, 105,35));
+      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.RESULT_SLOT, 105,35));
+      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.RESULT_SLOT, 105,35));
+      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.RESULT_SLOT, 105,35));
    }
 
    @Override
    public boolean canInteractWith(EntityPlayer playerIn)
    {
       return true;
+   }
+
+   @Override
+   public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
+   {
+      ItemStack itemstack = ItemStack.EMPTY;
+      Slot slot = this.inventorySlots.get(index);
+
+      if (slot != null && slot.getHasStack())
+      {
+         ItemStack itemstack1 = slot.getStack();
+         itemstack = itemstack1.copy();
+
+         if (index < TileEntityCookingPot.NUM_SLOTS)
+         {
+            if (!this.mergeItemStack(itemstack1, TileEntityCookingPot.NUM_SLOTS, this.inventorySlots.size(), true))
+            {
+               return ItemStack.EMPTY;
+            }
+         } else if (!this.mergeItemStack(itemstack1, 0, TileEntityCookingPot.NUM_SLOTS, false))
+         {
+            return ItemStack.EMPTY;
+         }
+
+         if (itemstack1.isEmpty())
+         {
+            slot.putStack(ItemStack.EMPTY);
+         } else {
+            slot.onSlotChanged();
+         }
+      }
+
+      return itemstack;
    }
 }

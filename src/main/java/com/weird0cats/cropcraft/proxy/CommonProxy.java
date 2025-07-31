@@ -22,6 +22,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+
 
 import java.io.File;
 
@@ -38,6 +40,7 @@ public class CommonProxy {
 
    public void init(FMLInitializationEvent e)
    {
+      //NetworkRegistry.INSTANCE.registerGuiHandler(CropCraft.instance, new GuiProxy());
    }
 
    public void postInit(FMLPostInitializationEvent e)
