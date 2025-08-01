@@ -16,7 +16,7 @@ public class CookingPotGui extends GuiContainer
    private TileEntityCookingPot te;
    private InventoryPlayer playerInv;
 
-   public CookingPotGui(TileEntityCookingPot tileEntity, ContainerCookingPot container)
+   public CookingPotGui(ContainerCookingPot container, InventoryPlayer playerInv)
    {
       super(container);
       
@@ -44,7 +44,12 @@ public class CookingPotGui extends GuiContainer
    @Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY)
    {
-      //this.fontRenderer.drawString(this.te.getDisplayName().getUnformattedText(), 8, 6, 4210752);
-      //this.fontRenderer.drawString(this.playerInv.getDisplayName().getUnformattedText(), 8, this.ySize - 96 + 2, 4210752);
+      
+      this.fontRenderer.drawString(this.te.getDisplayName().getUnformattedText(), 8, 6, 4210752);
+      if (this.playerInv.getDisplayName()!=null)
+      {
+         
+         this.fontRenderer.drawString(this.playerInv.getDisplayName().getUnformattedText(), 8, this.ySize - 96 + 2, 4210752);
+      }
    }
 }

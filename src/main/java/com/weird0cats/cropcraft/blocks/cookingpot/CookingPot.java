@@ -40,14 +40,15 @@ public class CookingPot extends Block implements ITileEntityProvider
       setHardness(1F);
    }
 
-   @Override
-	public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player)
-	{
-		if (!world.isRemote && !player.capabilities.isCreativeMode)
-      {
-		   world.spawnEntity(new EntityItem(world,pos.getX()+0.5,pos.getY()+0.5,pos.getZ()+0.5,new ItemStack(this,1,0)));
-		}
-	}
+   //@Override
+	//public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player)
+	//{
+	//	if (!world.isRemote && !player.capabilities.isCreativeMode)
+   //   {
+	//	   world.spawnEntity(new EntityItem(world,pos.getX()+0.5,pos.getY()+0.5,pos.getZ()+0.5,new ItemStack(this,1,0)));
+	//	}
+	//}
+   //apparently this drops the item TWICE when you use a tool :3
 
    @Override
    public IBlockState getStateFromMeta(int meta)

@@ -31,7 +31,7 @@ public class GuiProxy implements IGuiHandler
       TileEntity te = world.getTileEntity(pos);
       if (te instanceof TileEntityCookingPot) {
          TileEntityCookingPot containerTileEntity = (TileEntityCookingPot) te;
-         return new CookingPotGui(containerTileEntity, new ContainerCookingPot(player.inventory, containerTileEntity));
+         return new CookingPotGui(new ContainerCookingPot(player.inventory, containerTileEntity), player.inventory);
       }
       return null;
    }
