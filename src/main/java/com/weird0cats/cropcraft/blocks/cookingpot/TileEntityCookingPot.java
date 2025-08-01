@@ -19,8 +19,8 @@ public class TileEntityCookingPot extends TileEntity
 {
    public static final int RESULT_SLOT = 0;
    public static final int FUEL_SLOT = 1;
-   public static final int INGREDIENTS_SLOT_START = 2;
-   public static int NUM_SLOTS = 7;
+   public static final int INPUT_SLOTS_START = 2;
+   public static int NUM_SLOTS = 8;
 
    protected ItemStackHandler itemStackHandler = new ItemStackHandler(NUM_SLOTS)
    {
@@ -30,6 +30,11 @@ public class TileEntityCookingPot extends TileEntity
          TileEntityCookingPot.this.markDirty();
       }
    };
+
+   public String getName()
+   {
+      return "container.cropcraft.cookingpot";
+   }
 
    protected int getInternalSize()
    {

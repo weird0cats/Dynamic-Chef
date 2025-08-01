@@ -50,11 +50,14 @@ public class ContainerCookingPot extends Container
    private void addOwnSlots()
    {
       IItemHandler itemHandler = this.te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.RESULT_SLOT, 105,35));
-      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.RESULT_SLOT, 105,35));
-      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.RESULT_SLOT, 105,35));
-      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.RESULT_SLOT, 105,35));
-      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.RESULT_SLOT, 105,35));
+      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.RESULT_SLOT, 105, 35));
+      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.FUEL_SLOT, 94, 35));
+      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.INPUT_SLOTS_START, 48, 26));
+      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.INPUT_SLOTS_START+1, 32, 26));
+      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.INPUT_SLOTS_START+2, 24, 26));
+      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.INPUT_SLOTS_START+3, 48, 26));
+      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.INPUT_SLOTS_START+4, 32, 26));
+      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.INPUT_SLOTS_START+5, 24, 26));
    }
 
    @Override

@@ -92,8 +92,8 @@ public class CookingPot extends Block implements ITileEntityProvider
       return new TileEntityCookingPot();
    }
 
-   //@Override
-   public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ)
+   @Override
+   public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
    {
       if (world.isRemote)
       {
