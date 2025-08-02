@@ -1,0 +1,104 @@
+package com.weird0cats.cropcraft.crafting;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import net.minecraft.item.ItemStack;
+
+
+public class CookingPotRecipe implements ICookingPotRecipe
+{
+   ItemStack output;
+
+   List<ItemStack> inputs;
+
+   public CookingPotRecipe(ItemStack output, ItemStack input1, ItemStack input2, ItemStack input3, ItemStack input4, ItemStack input5, ItemStack input6)
+   {
+      this.output = output;
+      this.inputs = new ArrayList<ItemStack>();
+      this.inputs.add(input1);
+      this.inputs.add(input2);
+      this.inputs.add(input3);
+      this.inputs.add(input4);
+      this.inputs.add(input5);
+      this.inputs.add(input6);
+   }
+
+   public boolean matches(ItemStack[] inputs)
+   {
+      if (inputs.length <= 0)
+      {
+         return false;
+      }
+      if (this.inputs == null || this.inputs.size() <= 0)
+      {
+         return false;
+      }
+      List<ItemStack> tempInputs = new ArrayList<ItemStack>(this.inputs);
+      for (int i = 0; i < inputs.length; i++)
+      {
+			ItemStack stack = inputs[i].copy();
+			if (stack.isEmpty())
+         {
+				continue;
+			}
+			boolean stackNotInput = true;
+			for (ItemStack temp : tempInputs)
+         {
+				if (temp.getItem().equals(stack.getItem()))
+            {
+					if (temp.getMetadata() == stack.getMetadata())
+               {
+						if (temp.hasTagCompound() && stack.hasTagCompound())
+                  {
+							if (temp.getTagCompound().equals(stack.getTagCompound()))
+                     {
+								tempInputs.remove(stack);
+								stackNotInput = false;
+								break;
+							}
+						} else if (!temp.hasTagCompound()) 
+                  {
+							tempInputs.remove(temp);
+							stackNotInput = false;
+							break;
+						}
+					}
+				}
+			}
+			if (stackNotInput)
+         {
+				return false;
+			}
+		}
+      return (tempInputs.size() == 0);
+   }
+
+   public List<List<ItemStack>> getInputs()
+   {
+      List<List<ItemStack>> inputList = new ArrayList<>();
+      for (ItemStack stack : this.inputs)
+      {
+         inputList.add(Arrays.asList(stack.copy()));
+      }
+      return inputList;
+   }
+
+   @Override
+   public int[] getInputConsumption(ItemStack[] inputs)
+   {
+      return new int[]{1,1,1};
+   }
+
+   @Override
+   public int getTime()
+   {
+      return 400;
+   }
+
+   public ItemStack getResult()
+   {
+      return this.output.copy();
+   }
+}

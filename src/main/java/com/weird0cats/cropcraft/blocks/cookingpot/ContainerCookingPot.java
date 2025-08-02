@@ -1,10 +1,14 @@
 package com.weird0cats.cropcraft.blocks.cookingpot;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntityFurnace;
 
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
@@ -50,8 +54,22 @@ public class ContainerCookingPot extends Container
    private void addOwnSlots()
    {
       IItemHandler itemHandler = this.te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.RESULT_SLOT, 123, 35));
-      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.FUEL_SLOT, 70, 62));
+      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.RESULT_SLOT, 123, 35)
+      {
+         @Override
+         public boolean isItemValid(@Nonnull ItemStack stack)
+         {
+            return false;
+         }
+      });
+      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.FUEL_SLOT, 70, 62)
+      {
+         @Override
+			public boolean isItemValid(@Nonnull ItemStack stack)
+         {
+				return super.isItemValid(stack) && TileEntityFurnace.isItemFuel(stack);
+			}
+      });
       addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.INPUT_SLOTS_START+0, 11, 22));
       addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.INPUT_SLOTS_START+1, 30, 22));
       addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.INPUT_SLOTS_START+2, 49, 22));
