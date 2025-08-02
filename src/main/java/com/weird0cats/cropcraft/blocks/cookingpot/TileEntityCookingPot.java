@@ -1,5 +1,8 @@
 package com.weird0cats.cropcraft.blocks.cookingpot;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 import com.weird0cats.cropcraft.crafting.ICookingPotRecipe;
 import com.weird0cats.cropcraft.crafting.Recipes;
 
@@ -200,8 +203,8 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
          itemStackHandler.deserializeNBT((NBTTagCompound) compound.getTag("items"));
       }
       this.potBurnTime = compound.getInteger("BurnTime");
-		this.cookTime = compound.getInteger("BrewTime");
-		this.totalCookTime = compound.getInteger("BrewTimeTotal");
+		this.cookTime = compound.getInteger("CookTime");
+		this.totalCookTime = compound.getInteger("CookTimeTotal");
 		this.currentItemBurnTime = compound.getInteger("ItemBurnTime");
 		this.hasContentChanged = true;
    }
@@ -211,8 +214,8 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
       compound = super.writeToNBT(compound);
       compound.setTag("items", itemStackHandler.serializeNBT());
       compound.setInteger("BurnTime", (short) this.potBurnTime);
-		compound.setInteger("BrewTime", (short) this.cookTime);
-		compound.setInteger("BrewTimeTotal", (short) this.totalCookTime);
+		compound.setInteger("CookTime", (short) this.cookTime);
+		compound.setInteger("CookTimeTotal", (short) this.totalCookTime);
 		compound.setInteger("ItemBurnTime", this.currentItemBurnTime);
       return compound;
    }
@@ -227,8 +230,10 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
       return super.hasCapability(capability, facing);
    }
    
+   @SuppressWarnings("unchecked")
    @Override
-   public <T> T getCapability(Capability<T> capability, EnumFacing facing)
+   @Nullable
+   public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing)
    {
       if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
       {
@@ -239,7 +244,7 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
 
    protected void cook()
    {
-      if (true)
+      if (this.canCook())
       {
          ItemStack[] inputs = new ItemStack[]{ this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START+0), this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START+1), this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START+2), this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START+3), this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START+4), this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START+5)};
          ICookingPotRecipe recipe = this.currentRecipe;
