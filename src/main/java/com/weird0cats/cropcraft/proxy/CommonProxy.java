@@ -68,10 +68,4 @@ public class CommonProxy {
 
       event.getRegistry().register(new ItemBlock(ModBlocks.cookingPot).setRegistryName(ModBlocks.cookingPot.getRegistryName()));
    }
-
-   @SubscribeEvent
-   public void initRecipes(RegistryEvent.Register<IRecipe> event)
-   {
-      Recipes.init();
-   }
 }
