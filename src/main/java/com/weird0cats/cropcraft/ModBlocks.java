@@ -1,7 +1,6 @@
 package com.weird0cats.cropcraft;
 
-import com.weird0cats.cropcraft.blocks.*;
-import com.weird0cats.cropcraft.blocks.cookingpot.*;
+import com.weird0cats.cropcraft.blocks.cookingpot.CookingPot;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;

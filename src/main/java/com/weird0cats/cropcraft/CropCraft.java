@@ -1,23 +1,15 @@
 package com.weird0cats.cropcraft;
 
+import org.apache.logging.log4j.Logger;
+
 import com.weird0cats.cropcraft.proxy.CommonProxy;
-import com.weird0cats.cropcraft.CropCraftTab;
-import com.weird0cats.cropcraft.crafting.Recipes;
 
-import net.minecraft.init.Blocks;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.crafting.IRecipe;
-
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.event.RegistryEvent;
-
-import org.apache.logging.log4j.Logger;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 @Mod(modid = CropCraft.MODID, name = CropCraft.NAME, version = CropCraft.VERSION, useMetadata = true)
 public class CropCraft
@@ -53,10 +45,5 @@ public class CropCraft
       proxy.postInit(e);
    }
    
-   @SubscribeEvent
-   public void initRecipes(RegistryEvent.Register<IRecipe> event)
-   {
-      Recipes.init();
-   }
 }
 

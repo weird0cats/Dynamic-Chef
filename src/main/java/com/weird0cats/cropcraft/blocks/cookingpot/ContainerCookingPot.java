@@ -1,15 +1,13 @@
 package com.weird0cats.cropcraft.blocks.cookingpot;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFurnace;
-
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
@@ -17,7 +15,7 @@ import net.minecraftforge.items.SlotItemHandler;
 
 public class ContainerCookingPot extends Container 
 {
-   private TileEntityCookingPot te;
+   private final TileEntityCookingPot te;
 
    public ContainerCookingPot(IInventory playerInventory, TileEntityCookingPot te)
    {

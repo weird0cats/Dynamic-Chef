@@ -1,33 +1,29 @@
 package com.weird0cats.cropcraft.proxy;
 
-import com.weird0cats.cropcraft.*;
-//import com.weird0cats.cropcraft.blocks.*;
-import com.weird0cats.cropcraft.blocks.cookingpot.*;
-import com.weird0cats.cropcraft.items.*;
+import java.io.File;
+
+import com.weird0cats.cropcraft.Config;
+import com.weird0cats.cropcraft.CropCraft;
+import com.weird0cats.cropcraft.ModBlocks;
+import com.weird0cats.cropcraft.blocks.cookingpot.CookingPot;
+import com.weird0cats.cropcraft.blocks.cookingpot.TileEntityCookingPot;
 import com.weird0cats.cropcraft.crafting.Recipes;
+import com.weird0cats.cropcraft.items.LupaBerry;
+import com.weird0cats.cropcraft.items.VitusBerry;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.crafting.IRecipe;
-
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.model.ModelLoaderRegistry;
-import net.minecraftforge.client.model.obj.OBJLoader;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
-
-
-import java.io.File;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod.EventBusSubscriber
 public class CommonProxy {
@@ -67,5 +63,11 @@ public class CommonProxy {
       event.getRegistry().register(new VitusBerry(2,0.4f));
 
       event.getRegistry().register(new ItemBlock(ModBlocks.cookingPot).setRegistryName(ModBlocks.cookingPot.getRegistryName()));
+   }
+
+   @SubscribeEvent
+   public void initRecipes(RegistryEvent.Register<IRecipe> event)
+   {
+      Recipes.init();
    }
 }

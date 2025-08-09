@@ -3,8 +3,8 @@ package com.weird0cats.cropcraft.blocks.cookingpot;
 import com.weird0cats.cropcraft.CropCraft;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.ResourceLocation;
 
 public class CookingPotGui extends GuiContainer
 {
@@ -13,8 +13,8 @@ public class CookingPotGui extends GuiContainer
 
    private static final ResourceLocation background = new ResourceLocation(CropCraft.MODID, "textures/gui/cookingpot.png");
 
-   private TileEntityCookingPot te;
-   private InventoryPlayer playerInv;
+   private final TileEntityCookingPot te;
+   private final InventoryPlayer playerInv;
 
    public CookingPotGui(ContainerCookingPot container, InventoryPlayer playerInv)
    {

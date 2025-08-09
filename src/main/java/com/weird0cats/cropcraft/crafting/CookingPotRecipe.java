@@ -13,6 +13,7 @@ public class CookingPotRecipe implements ICookingPotRecipe
 
    List<ItemStack> inputs;
 
+   @SuppressWarnings("Convert2Diamond")
    public CookingPotRecipe(ItemStack output, ItemStack input1, ItemStack input2, ItemStack input3, ItemStack input4, ItemStack input5, ItemStack input6)
    {
       this.output = output;
@@ -24,57 +25,61 @@ public class CookingPotRecipe implements ICookingPotRecipe
       this.inputs.add(input5);
       this.inputs.add(input6);
    }
-
+   //checks if items match a recipe?
+   @Override
    public boolean matches(ItemStack[] inputs)
    {
       if (inputs.length <= 0)
       {
          return false;
       }
+
       if (this.inputs == null || this.inputs.size() <= 0)
       {
          return false;
       }
+
+      @SuppressWarnings("Convert2Diamond")
       List<ItemStack> tempInputs = new ArrayList<ItemStack>(this.inputs);
-      for (int i = 0; i < inputs.length; i++)
-      {
-			ItemStack stack = inputs[i].copy();
-			if (stack.isEmpty())
-         {
-				continue;
-			}
-			boolean stackNotInput = true;
-			for (ItemStack temp : tempInputs)
-         {
-				if (temp.getItem().equals(stack.getItem()))
-            {
-					if (temp.getMetadata() == stack.getMetadata())
+       for (ItemStack input : inputs) {
+           ItemStack stack = input.copy();
+           if (stack.isEmpty())
+           {
+               continue;
+           }
+           boolean stackNotInput = true;
+           for (ItemStack temp : tempInputs)
+           {
+               if (temp.getItem().equals(stack.getItem()))
                {
-						if (temp.hasTagCompound() && stack.hasTagCompound())
-                  {
-							if (temp.getTagCompound().equals(stack.getTagCompound()))
-                     {
-								tempInputs.remove(stack);
-								stackNotInput = false;
-								break;
-							}
-						} else if (!temp.hasTagCompound()) 
-                  {
-							tempInputs.remove(temp);
-							stackNotInput = false;
-							break;
-						}
-					}
-				}
-			}
-			if (stackNotInput)
-         {
-				return false;
-			}
-		}
-      return (tempInputs.size() == 0);
+                   if (temp.getMetadata() == stack.getMetadata())
+                   {
+                       if (temp.hasTagCompound() && stack.hasTagCompound())
+                       {
+                           if (temp.getTagCompound().equals(stack.getTagCompound()))
+                           {
+                               tempInputs.remove(stack);
+                               stackNotInput = false;
+                               break;
+                           }
+                       } else if (!temp.hasTagCompound())
+                       {
+                           tempInputs.remove(temp);
+                           stackNotInput = false;
+                           break;
+                       }
+                   }
+               }
+           }
+           if (stackNotInput)
+           {
+               return false;
+           }
+       }
+      return (tempInputs.isEmpty());
    }
 
+   @Override
    public List<List<ItemStack>> getInputs()
    {
       List<List<ItemStack>> inputList = new ArrayList<>();
@@ -97,6 +102,7 @@ public class CookingPotRecipe implements ICookingPotRecipe
       return 400;
    }
 
+   @Override
    public ItemStack getResult()
    {
       return this.output.copy();
