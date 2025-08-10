@@ -14,17 +14,13 @@ public class CookingPotRecipe implements ICookingPotRecipe
    List<ItemStack> inputs;
 
    @SuppressWarnings("Convert2Diamond")
-   public CookingPotRecipe(ItemStack output, ItemStack input1, ItemStack input2, ItemStack input3, ItemStack input4, ItemStack input5, ItemStack input6)
+   public CookingPotRecipe(ItemStack output, ItemStack... inputs)
    {
       this.output = output;
-      this.inputs = new ArrayList<ItemStack>();
-      this.inputs.add(input1);
-      this.inputs.add(input2);
-      this.inputs.add(input3);
-      this.inputs.add(input4);
-      this.inputs.add(input5);
-      this.inputs.add(input6);
+      this.inputs = Arrays.asList(inputs);
+      
    }
+   
    //checks if items match a recipe?
    @Override
    public boolean matches(ItemStack[] inputs)
@@ -52,29 +48,29 @@ public class CookingPotRecipe implements ICookingPotRecipe
            {
                if (temp.getItem().equals(stack.getItem()))
                {
-                   if (temp.getMetadata() == stack.getMetadata())
-                   {
-                       if (temp.hasTagCompound() && stack.hasTagCompound())
-                       {
-                           if (temp.getTagCompound().equals(stack.getTagCompound()))
-                           {
-                               tempInputs.remove(stack);
-                               stackNotInput = false;
-                               break;
-                           }
-                       } else if (!temp.hasTagCompound())
-                       {
-                           tempInputs.remove(temp);
-                           stackNotInput = false;
-                           break;
-                       }
-                   }
+                  if (temp.getMetadata() == stack.getMetadata())
+                  {
+                     if (temp.hasTagCompound() && stack.hasTagCompound())
+                     {
+                        if (temp.getTagCompound().equals(stack.getTagCompound()))
+                        {
+                        tempInputs.remove(stack);
+                        stackNotInput = false;
+                        break;
+                     }
+                  } else if (!temp.hasTagCompound())
+                  {
+                     tempInputs.remove(temp);
+                     stackNotInput = false;
+                     break;
+                  }
                }
-           }
-           if (stackNotInput)
-           {
-               return false;
-           }
+            }
+         }
+         if (stackNotInput)
+         {
+            return false;
+         }
        }
       return (tempInputs.isEmpty());
    }

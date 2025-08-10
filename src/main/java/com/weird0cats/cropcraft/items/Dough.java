@@ -8,15 +8,15 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class LupaBerry extends ItemFood
+public class Dough extends ItemFood
 {
    public final float saturation;
 
-   public LupaBerry(int healAmount, float saturation)
+   public Dough(int healAmount, float saturation)
    {
       super(healAmount, saturation, false);
-      setRegistryName("lupaberry");
-      setTranslationKey(CropCraft.MODID + ".lupaberry");
+      setRegistryName("dough");
+      setTranslationKey(CropCraft.MODID + ".dough");
       setCreativeTab(CropCraft.modTab);
       this.saturation=saturation;
    }

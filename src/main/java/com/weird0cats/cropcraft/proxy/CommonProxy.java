@@ -8,6 +8,7 @@ import com.weird0cats.cropcraft.ModBlocks;
 import com.weird0cats.cropcraft.blocks.cookingpot.CookingPot;
 import com.weird0cats.cropcraft.blocks.cookingpot.TileEntityCookingPot;
 import com.weird0cats.cropcraft.crafting.Recipes;
+import com.weird0cats.cropcraft.items.Dough;
 import com.weird0cats.cropcraft.items.LupaBerry;
 import com.weird0cats.cropcraft.items.VitusBerry;
 
@@ -61,12 +62,13 @@ public class CommonProxy {
    {
       event.getRegistry().register(new LupaBerry(2,0.4f));
       event.getRegistry().register(new VitusBerry(2,0.4f));
+      event.getRegistry().register(new Dough(1,0.2f));
 
       event.getRegistry().register(new ItemBlock(ModBlocks.cookingPot).setRegistryName(ModBlocks.cookingPot.getRegistryName()));
    }
 
    @SubscribeEvent
-   public void initRecipes(RegistryEvent.Register<IRecipe> event)
+   public static void initRecipe(RegistryEvent.Register<IRecipe> event)
    {
       Recipes.init();
    }

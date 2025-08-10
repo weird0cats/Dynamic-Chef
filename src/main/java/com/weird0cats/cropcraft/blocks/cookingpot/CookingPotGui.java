@@ -43,8 +43,11 @@ public class CookingPotGui extends GuiContainer
       if (te.isBurning())
       {
 			int k = this.getBurnLeftScaled(13);
-			this.drawTexturedModalRect(guiLeft + 67, guiTop + 46 + 12 - k, 176, 12 - k, 14, k + 1);
+			this.drawTexturedModalRect(guiLeft + 71, guiTop + 46 + 12 - k, 176, 12 - k, 14, k + 1);
 		}
+
+      int l = this.getCookProgressScaled(23);
+		this.drawTexturedModalRect(guiLeft + 90, guiTop + 35, 176, 14, l, 17);
    }
    
    @Override
@@ -55,6 +58,12 @@ public class CookingPotGui extends GuiContainer
       this.fontRenderer.drawString(this.playerInv.getDisplayName().getUnformattedText(), 8, this.ySize - 96 + 2, 4210752);
    }
    
+   private int getCookProgressScaled(int pixels) {
+		int i = this.te.cookTime;
+		int j = this.te.totalCookTime;
+		return j != 0 && i != 0 ? (i * pixels / j) + 1 : 0;
+	}
+
    private int getBurnLeftScaled(int pixels) {
 		int i = this.te.currentItemBurnTime;
 		if (i == 0)

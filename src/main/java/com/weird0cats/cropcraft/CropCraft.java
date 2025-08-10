@@ -26,6 +26,7 @@ public class CropCraft
 
    public static Logger logger;
    public static CreativeTabs modTab = new CropCraftTab();
+   
    @Mod.EventHandler
    public void preInit(FMLPreInitializationEvent event)
    {
@@ -44,6 +45,5 @@ public class CropCraft
    {
       proxy.postInit(e);
    }
-   
 }
 

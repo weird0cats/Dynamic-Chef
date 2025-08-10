@@ -4,15 +4,20 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import com.weird0cats.cropcraft.crafting.ICookingPotRecipe;
+import com.weird0cats.cropcraft.crafting.Recipes;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
@@ -60,13 +65,28 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
    public int currentItemBurnTime;
    public int cookTime;
    public int totalCookTime;
-
    
-
    @Override
    public void update()
    {
-      
+      boolean isCooking = this.canCook();
+      boolean hasRecipe = isCooking && this.hasValidRecipe();
+      if (burnFuel(isCooking && hasRecipe) && isCooking && hasRecipe)
+      {
+         ++this.cookTime;
+         if (this.cookTime >= this.currentRecipe.getTime())
+         {
+            this.cookTime = 0;
+            if (!world.isRemote)
+            {
+               cook();
+            }
+         }
+      }
+      else if (this.cookTime > 0)
+      {
+         this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.totalCookTime);
+      }
    }
 
    //checks if all slots are empty to prevent cooking "nothing"
@@ -78,6 +98,78 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
               && this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START+3).isEmpty()
               && this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START+4).isEmpty()
               && this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START+5).isEmpty());
+   }
+   
+   //fixing a null pointer exception somewhere 
+   //also making sure it can keep cooking and all that
+   public boolean hasValidRecipe()
+   {
+      //burn check shortcut
+      if (this.potBurnTime <=0 && this.itemStackHandler.getStackInSlot(FUEL_SLOT).isEmpty())
+      {
+         return false;
+      }
+      if (this.hasContentChanged)
+      {
+         this.refreshCurrentRecipe();
+      }
+      if (this.currentRecipe == null)
+      {
+         return false;
+      }
+      return this.itemStackHandler.insertItem(RESULT_SLOT, this.currentRecipe.getResult(), true).isEmpty();
+   }
+
+   //changes the recipe when the contents change
+   protected void refreshCurrentRecipe()
+   {
+      if (this.hasContentChanged)
+      {
+         this.hasContentChanged = false;
+         ItemStack[] inputs = new ItemStack[]{ this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START + 0), this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START + 1), this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START + 2), this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START + 3), this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START + 3), this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START + 4), this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START + 5)};
+         if (this.currentRecipe != null && this.currentRecipe.matches(inputs))
+         {
+            return;
+         }
+         this.cookTime = 0;
+         this.currentRecipe = null;
+         for (ICookingPotRecipe recipe : Recipes.cookingPotRecipes)
+         {
+            if (recipe.matches(inputs))
+            {
+               this.currentRecipe = recipe;
+               this.totalCookTime = recipe.getTime();
+               return;
+            }
+         }
+      }
+   }
+
+   //burns fuel and manages burn times
+   private boolean burnFuel(boolean consumeNewFuel)
+   {
+      if (this.potBurnTime > 0)
+      {
+         --this.potBurnTime;
+         return true;
+      }
+      ItemStack fuelStack = itemStackHandler.getStackInSlot(FUEL_SLOT);
+      if (consumeNewFuel && !fuelStack.isEmpty())
+      {
+         this.potBurnTime = TileEntityFurnace.getItemBurnTime(fuelStack);
+         this.currentItemBurnTime = this.potBurnTime;
+         if (!world.isRemote)
+         {
+            Item fuelItem = fuelStack.getItem();
+            fuelStack.shrink(1);
+            if (fuelStack.isEmpty())
+            {
+               itemStackHandler.setStackInSlot(FUEL_SLOT, fuelItem.getContainerItem(fuelStack));
+            }
+         }
+         return true;
+      }
+      return false;
    }
 
    //checks if the pot is burning fuel
@@ -94,6 +186,26 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
          for (int i=0; i < itemStackHandler.getSlots(); i++)
          {
             Block.spawnAsEntity(world, pos, itemStackHandler.getStackInSlot(i));
+         }
+      }
+   }
+
+   protected void cook()
+   {
+      if (this.canCook())
+      {
+         ItemStack[] inputs = new ItemStack[]{ this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START + 0), this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START + 1), this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START + 2), this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START + 3), this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START + 3), this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START + 4), this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START + 5)};
+         ICookingPotRecipe recipe = this.currentRecipe;
+         if (recipe.matches(inputs))
+         {
+            itemStackHandler.insertItem(RESULT_SLOT, recipe.getResult(), false);
+            itemStackHandler.extractItem(INPUT_SLOTS_START + 0, 1, false);
+            itemStackHandler.extractItem(INPUT_SLOTS_START + 1, 1, false);
+            itemStackHandler.extractItem(INPUT_SLOTS_START + 2, 1, false);
+            itemStackHandler.extractItem(INPUT_SLOTS_START + 3, 1, false);
+            itemStackHandler.extractItem(INPUT_SLOTS_START + 4, 1, false);
+            itemStackHandler.extractItem(INPUT_SLOTS_START + 5, 1, false);
+
          }
       }
    }

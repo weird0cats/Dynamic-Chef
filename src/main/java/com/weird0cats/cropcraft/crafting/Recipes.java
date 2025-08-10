@@ -19,11 +19,12 @@ public class Recipes
    public static void init()
    {
       addCookingPotRecipes();
+      System.out.print("Recipes added successfully!\n");
    }
 
    public static void addCookingPotRecipes()
    {
       //test recipe, cooking beef
-      cookingPotRecipes.add(new CookingPotRecipe(new ItemStack(Items.COOKED_BEEF), new ItemStack(Items.BEEF),null,null,null,null,null));
+      cookingPotRecipes.add(new CookingPotRecipe(new ItemStack(Items.COOKED_BEEF), new ItemStack(Items.BEEF)));
    }
 }
