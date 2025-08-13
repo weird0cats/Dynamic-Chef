@@ -1,22 +1,24 @@
-package com.weird0cats.cropcraft.blocks.cookingpot;
+package com.weird0cats.cropcraft.client.gui;
 
 import com.weird0cats.cropcraft.CropCraft;
+import com.weird0cats.cropcraft.tileentity.ContainerBrickOven;
+import com.weird0cats.cropcraft.tileentity.TileEntityBrickOven;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
-public class CookingPotGui extends GuiContainer
+public class BrickOvenGui extends GuiContainer
 {
    public static final int WIDTH = 176;
    public static final int HEIGHT = 166;
 
-   private static final ResourceLocation background = new ResourceLocation(CropCraft.MODID, "textures/gui/cookingpot.png");
+   private static final ResourceLocation background = new ResourceLocation(CropCraft.MODID, "textures/gui/brickoven.png");
 
-   private final TileEntityCookingPot te;
+   private final TileEntityBrickOven te;
    private final InventoryPlayer playerInv;
 
-   public CookingPotGui(ContainerCookingPot container, InventoryPlayer playerInv)
+   public BrickOvenGui(ContainerBrickOven container, InventoryPlayer playerInv)
    {
       super(container);
       
@@ -70,6 +72,6 @@ public class CookingPotGui extends GuiContainer
       {
 			i = 200;
 		}
-		return this.te.potBurnTime * pixels / i;
+		return this.te.ovenBurnTime * pixels / i;
 	}
 }

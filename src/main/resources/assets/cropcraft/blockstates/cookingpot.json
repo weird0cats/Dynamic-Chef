@@ -5,9 +5,8 @@
       "custom": {"flip-v":true},
       "model": "cropcraft:cookingpot.obj",
       "textures":{
-         "#Wall1":"cropcraft:blocks/wall1",
-         "#Wall2":"cropcraft:blocks/wall2",
-         "#Bottom":"cropcraft:blocks/bottom"
+         "#handles":"cropcraft:blocks/cookingpot/handles",
+         "#base":"cropcraft:blocks/cookingpot/base"
       }
    },
    "variants":
@@ -15,6 +14,10 @@
       "normal":[{}],
       "inventory":[{ 
          "model": "cropcraft:cookingpot.obj",
-         "transform":"forge:default-block"}]
+         "transform":"forge:default-block"}],
+      "facing=north": { "model": "cropcraft:cookingpot.obj" },
+      "facing=east": { "model": "cropcraft:cookingpot.obj", "y": 90 },
+      "facing=south": { "model": "cropcraft:cookingpot.obj", "y": 180 },
+      "facing=west": { "model": "cropcraft:cookingpot.obj", "y": 270 }
    }
 }

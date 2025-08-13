@@ -1,0 +1,12 @@
+{
+   "parent": "block/cube",
+   "textures": {
+      "particle": "cropcraft:blocks/brickovenside",
+      "down": "cropcraft:blocks/brickovenbottom",
+      "up": "cropcraft:blocks/brickoventop",
+      "east": "cropcraft:blocks/brickovenside",
+      "west": "cropcraft:blocks/brickovenside",
+      "north": "cropcraft:blocks/brickovenfrontoff",
+      "south": "cropcraft:blocks/brickovenside"
+   }
+}

@@ -1,4 +1,4 @@
-package com.weird0cats.cropcraft.blocks.cookingpot;
+package com.weird0cats.cropcraft.tileentity;
 
 import javax.annotation.Nonnull;
 

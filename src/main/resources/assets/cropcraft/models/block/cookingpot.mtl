@@ -1,8 +1,6 @@
-# Made in Blockbench 4.12.5
-newmtl Wall2
-map_Kd cropcraft:blocks/wall2
-newmtl Wall1
-map_Kd cropcraft:blocks/wall1
-newmtl Bottom
-map_Kd cropcraft:blocks/bottom
+# Made in Blockbench 4.12.6
+newmtl base
+map_Kd cropcraft:blocks/cookingpot/base
+newmtl handles
+map_Kd cropcraft:blocks/cookingpot/handles
 newmtl none

@@ -5,12 +5,14 @@ import java.io.File;
 import com.weird0cats.cropcraft.Config;
 import com.weird0cats.cropcraft.CropCraft;
 import com.weird0cats.cropcraft.ModBlocks;
-import com.weird0cats.cropcraft.blocks.cookingpot.CookingPot;
-import com.weird0cats.cropcraft.blocks.cookingpot.TileEntityCookingPot;
+import com.weird0cats.cropcraft.blocks.BlockBrickOven;
+import com.weird0cats.cropcraft.blocks.BlockCookingPot;
 import com.weird0cats.cropcraft.crafting.Recipes;
 import com.weird0cats.cropcraft.items.Dough;
 import com.weird0cats.cropcraft.items.LupaBerry;
 import com.weird0cats.cropcraft.items.VitusBerry;
+import com.weird0cats.cropcraft.tileentity.TileEntityBrickOven;
+import com.weird0cats.cropcraft.tileentity.TileEntityCookingPot;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
@@ -53,8 +55,11 @@ public class CommonProxy {
    @SubscribeEvent
    public static void registerBlocks(RegistryEvent.Register<Block> event)
    {
-      event.getRegistry().register(new CookingPot());
+      event.getRegistry().register(new BlockCookingPot());
+      event.getRegistry().register(new BlockBrickOven());
       GameRegistry.registerTileEntity(TileEntityCookingPot.class, CropCraft.MODID + "_cookingpotblock");
+      GameRegistry.registerTileEntity(TileEntityBrickOven.class, CropCraft.MODID + "_brickovenblock");
+
    }
 
    @SubscribeEvent
@@ -63,8 +68,9 @@ public class CommonProxy {
       event.getRegistry().register(new LupaBerry(2,0.4f));
       event.getRegistry().register(new VitusBerry(2,0.4f));
       event.getRegistry().register(new Dough(1,0.2f));
-
+      
       event.getRegistry().register(new ItemBlock(ModBlocks.cookingPot).setRegistryName(ModBlocks.cookingPot.getRegistryName()));
+      event.getRegistry().register(new ItemBlock(ModBlocks.brickOven).setRegistryName(ModBlocks.brickOven.getRegistryName()));
    }
 
    @SubscribeEvent

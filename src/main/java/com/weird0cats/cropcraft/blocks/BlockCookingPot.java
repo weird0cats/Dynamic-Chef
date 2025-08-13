@@ -1,17 +1,23 @@
-package com.weird0cats.cropcraft.blocks.cookingpot;
+package com.weird0cats.cropcraft.blocks;
 
 import com.weird0cats.cropcraft.CropCraft;
+import com.weird0cats.cropcraft.tileentity.TileEntityCookingPot;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -19,11 +25,15 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class CookingPot extends Block implements ITileEntityProvider
+public class BlockCookingPot extends Block implements ITileEntityProvider
 {
    public static final int GUI_ID = 1;
+   
+   public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
+   
+   protected static final AxisAlignedBB POT_AABB = new AxisAlignedBB(0.125D, 0.0D, 0.125D, 0.875D, 0.55D, 0.875D);
 
-   public CookingPot()
+   public BlockCookingPot()
    {
       super(Material.IRON);
       setTranslationKey(CropCraft.MODID + ".cookingpot"); //WORMK! :D
@@ -33,15 +43,37 @@ public class CookingPot extends Block implements ITileEntityProvider
    }
 
    @Override
+   public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+   {
+      return POT_AABB;
+   }
+
+   @Override
+   public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
+   {
+      return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
+   }
+
+   @Override
    public IBlockState getStateFromMeta(int meta)
    {
-      return getDefaultState();
+      return this.getDefaultState().withProperty(FACING, EnumFacing.byIndex(5 - (meta & 3)));
    }
 
    @Override
    public int getMetaFromState(IBlockState state)
    {
-      return 0;
+      int meta = 0;
+
+      meta |= 5 - ((EnumFacing) state.getValue(FACING)).getIndex();
+
+      return meta;
+   }
+
+   @Override
+   protected BlockStateContainer createBlockState()
+   {
+      return new BlockStateContainer(this, new IProperty[] { FACING });
    }
 
    @SideOnly(Side.CLIENT)
@@ -58,7 +90,7 @@ public class CookingPot extends Block implements ITileEntityProvider
    }
 
    @Override
-   public boolean isBlockNormalCube(IBlockState blockState)
+   public boolean isFullCube(IBlockState blockState)
    {
       return false;
    }
@@ -94,14 +126,13 @@ public class CookingPot extends Block implements ITileEntityProvider
    @Override
    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
    {
-      TileEntity tileentity = worldIn.getTileEntity(pos);
-      if (tileentity instanceof TileEntityCookingPot)
+      TileEntity te = worldIn.getTileEntity(pos);
+      if (te instanceof TileEntityCookingPot)
       {
-         ((TileEntityCookingPot) tileentity).breakBlock(worldIn, pos, state);
-         tileentity.invalidate();
+         ((TileEntityCookingPot) te).breakBlock(worldIn, pos, state);
+         te.invalidate();
          worldIn.removeTileEntity(pos);
       }
       super.breakBlock(worldIn, pos, state);
    } 
-
 }

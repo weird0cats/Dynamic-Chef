@@ -1,4 +1,4 @@
-package com.weird0cats.cropcraft.blocks.cookingpot;
+package com.weird0cats.cropcraft.tileentity;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -89,7 +89,6 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
       }
    }
 
-   //checks if all slots are empty to prevent cooking "nothing"
    public boolean canCook()
    {
       return !(this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START+0).isEmpty()
@@ -100,8 +99,6 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
               && this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START+5).isEmpty());
    }
    
-   //fixing a null pointer exception somewhere 
-   //also making sure it can keep cooking and all that
    public boolean hasValidRecipe()
    {
       //burn check shortcut
@@ -120,7 +117,6 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
       return this.itemStackHandler.insertItem(RESULT_SLOT, this.currentRecipe.getResult(), true).isEmpty();
    }
 
-   //changes the recipe when the contents change
    protected void refreshCurrentRecipe()
    {
       if (this.hasContentChanged)
@@ -145,7 +141,6 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
       }
    }
 
-   //burns fuel and manages burn times
    private boolean burnFuel(boolean consumeNewFuel)
    {
       if (this.potBurnTime > 0)
@@ -172,7 +167,6 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
       return false;
    }
 
-   //checks if the pot is burning fuel
    public boolean isBurning()
    {
       return this.potBurnTime > 0;
