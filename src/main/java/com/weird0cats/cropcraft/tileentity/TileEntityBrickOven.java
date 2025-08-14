@@ -3,6 +3,8 @@ package com.weird0cats.cropcraft.tileentity;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import com.weird0cats.cropcraft.ModBlocks;
+import static com.weird0cats.cropcraft.blocks.BlockBrickOven.FACING;
 import com.weird0cats.cropcraft.crafting.IBrickOvenRecipe;
 import com.weird0cats.cropcraft.crafting.Recipes;
 
@@ -27,6 +29,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class TileEntityBrickOven extends TileEntity implements ITickable
 {
+   public static boolean keepInventory;
    public static final int RESULT_SLOT = 0;
    public static final int FUEL_SLOT = 1; 
    public static final int INPUT_SLOTS_START = 2;
@@ -69,6 +72,9 @@ public class TileEntityBrickOven extends TileEntity implements ITickable
    @Override
    public void update()
    {
+      boolean check0 = this.isBurning();
+      boolean check1;
+      
       boolean isCooking = this.canCook();
       boolean hasRecipe = isCooking && this.hasValidRecipe();
       if (burnFuel(isCooking && hasRecipe) && isCooking && hasRecipe)
@@ -86,6 +92,32 @@ public class TileEntityBrickOven extends TileEntity implements ITickable
       else if (this.cookTime > 0)
       {
          this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.totalCookTime);
+      }
+      check1 = this.isBurning();
+      if (check0 != this.isBurning()) {
+         IBlockState iblockstate = world.getBlockState(pos);
+         TileEntity tileentity = world.getTileEntity(pos);
+
+         keepInventory = true;
+
+         if (check1) {
+            world.setBlockState(pos, ModBlocks.brickOvenLit.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            world.setBlockState(pos, ModBlocks.brickOvenLit.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+         } else {
+            world.setBlockState(pos, ModBlocks.brickOven.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            world.setBlockState(pos, ModBlocks.brickOven.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+         }
+         keepInventory = false;
+
+         if (tileentity != null)
+         {
+            tileentity.validate();
+            world.setTileEntity(pos, tileentity);
+         }
+      }
+      if (check1)
+      {
+         this.markDirty();
       }
    }
 

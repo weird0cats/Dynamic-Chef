@@ -56,9 +56,10 @@ public class CommonProxy {
    public static void registerBlocks(RegistryEvent.Register<Block> event)
    {
       event.getRegistry().register(new BlockCookingPot());
-      event.getRegistry().register(new BlockBrickOven());
-      GameRegistry.registerTileEntity(TileEntityCookingPot.class, CropCraft.MODID + "_cookingpotblock");
-      GameRegistry.registerTileEntity(TileEntityBrickOven.class, CropCraft.MODID + "_brickovenblock");
+      event.getRegistry().register(new BlockBrickOven("brickoven", false));
+      event.getRegistry().register(new BlockBrickOven("brickovenlit", true));
+      GameRegistry.registerTileEntity(TileEntityCookingPot.class, CropCraft.MODID + ":cookingpotblock");
+      GameRegistry.registerTileEntity(TileEntityBrickOven.class, CropCraft.MODID + ":brickovenblock");
 
    }
 
@@ -71,6 +72,7 @@ public class CommonProxy {
       
       event.getRegistry().register(new ItemBlock(ModBlocks.cookingPot).setRegistryName(ModBlocks.cookingPot.getRegistryName()));
       event.getRegistry().register(new ItemBlock(ModBlocks.brickOven).setRegistryName(ModBlocks.brickOven.getRegistryName()));
+      event.getRegistry().register(new ItemBlock(ModBlocks.brickOvenLit.setLightLevel(0.875f)).setRegistryName(ModBlocks.brickOvenLit.getRegistryName()));
    }
 
    @SubscribeEvent

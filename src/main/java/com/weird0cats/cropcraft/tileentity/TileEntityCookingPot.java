@@ -65,7 +65,7 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
    public int currentItemBurnTime;
    public int cookTime;
    public int totalCookTime;
-   
+
    @Override
    public void update()
    {

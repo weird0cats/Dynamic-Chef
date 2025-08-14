@@ -3,7 +3,9 @@ package com.weird0cats.cropcraft.blocks;
 import java.util.Random;
 
 import com.weird0cats.cropcraft.CropCraft;
+import com.weird0cats.cropcraft.ModBlocks;
 import com.weird0cats.cropcraft.tileentity.TileEntityBrickOven;
+import static com.weird0cats.cropcraft.tileentity.TileEntityBrickOven.keepInventory;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -18,6 +20,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -38,12 +41,15 @@ public class BlockBrickOven extends Block implements ITileEntityProvider
 
    public static PropertyBool LIT = PropertyBool.create("lit");
 
-   public BlockBrickOven()
+   public BlockBrickOven(String name, boolean lit)
    {
       super(Material.ROCK);
-      setTranslationKey(CropCraft.MODID + ".brickoven");
-      setRegistryName("brickoven");
-      setCreativeTab(CropCraft.modTab);
+      setTranslationKey(CropCraft.MODID + "." + name);
+      setRegistryName(name);
+      if (!lit)
+      {
+         setCreativeTab(CropCraft.modTab);
+      }
       setHardness(1F);
    }
 
@@ -82,12 +88,30 @@ public class BlockBrickOven extends Block implements ITileEntityProvider
    }
 
    @Override
+   public int getLightValue(IBlockState state)
+   {
+      if (state.getValue(LIT)) return 13;
+      return super.getLightValue(state);
+   }
+
+   @Override
    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
    {
       state = state.withProperty(LIT, getTE(world, pos).isBurning());
       return state;
    }
 
+   @Override
+   public Item getItemDropped(IBlockState state, Random rand, int fortune)
+   {
+      return Item.getItemFromBlock(ModBlocks.brickOven);
+   }
+   
+   @Override
+   public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
+   {
+      return new ItemStack(ModBlocks.brickOven);
+   }
    @Override
    protected BlockStateContainer createBlockState()
    {
@@ -125,12 +149,15 @@ public class BlockBrickOven extends Block implements ITileEntityProvider
    @Override
    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
    {
-      TileEntity te = worldIn.getTileEntity(pos);
-      if (te instanceof TileEntityBrickOven)
-      {
-         ((TileEntityBrickOven) te).breakBlock(worldIn, pos, state);
-         te.invalidate();
-         worldIn.removeTileEntity(pos);
+      if (!keepInventory)
+      {  
+         TileEntity te = worldIn.getTileEntity(pos);
+         if (te instanceof TileEntityBrickOven)
+         {
+            ((TileEntityBrickOven) te).breakBlock(worldIn, pos, state);
+            te.invalidate();
+            worldIn.removeTileEntity(pos);
+         }
       }
       super.breakBlock(worldIn, pos, state);
    }
@@ -139,7 +166,6 @@ public class BlockBrickOven extends Block implements ITileEntityProvider
    @SuppressWarnings("incomplete-switch")
    @Override
    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-      worldIn.markBlockRangeForRenderUpdate(pos, pos);
       if (this.getTE(worldIn, pos).isBurning()) {
          EnumFacing enumfacing = (EnumFacing) stateIn.getValue(FACING);
          double d0 = (double) pos.getX() + 0.5D;
