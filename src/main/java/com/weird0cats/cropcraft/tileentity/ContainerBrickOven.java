@@ -19,7 +19,7 @@ public class ContainerBrickOven extends Container
 
    public ContainerBrickOven(IInventory playerInventory, TileEntityBrickOven te)
    {
-      this.te=te;
+      this.te = te;
       addOwnSlots();
       addPlayerSlots(playerInventory);
    }

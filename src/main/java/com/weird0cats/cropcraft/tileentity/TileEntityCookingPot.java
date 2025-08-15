@@ -210,9 +210,11 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
    }
    
    @Override
-   public void readFromNBT(NBTTagCompound compound) {
+   public void readFromNBT(NBTTagCompound compound)
+   {
       super.readFromNBT(compound);
-      if (compound.hasKey("items")) {
+      if (compound.hasKey("items"))
+      {
          itemStackHandler.deserializeNBT((NBTTagCompound) compound.getTag("items"));
       }
       this.potBurnTime = compound.getInteger("BurnTime");
@@ -223,7 +225,8 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
    }
 
    @Override
-   public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+   public NBTTagCompound writeToNBT(NBTTagCompound compound)
+   {
       compound = super.writeToNBT(compound);
       compound.setTag("items", itemStackHandler.serializeNBT());
       compound.setInteger("BurnTime", (short) this.potBurnTime);
@@ -243,7 +246,6 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
       return super.hasCapability(capability, facing);
    }
    
-   @SuppressWarnings("unchecked")
    @Override
    @Nullable
    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing)

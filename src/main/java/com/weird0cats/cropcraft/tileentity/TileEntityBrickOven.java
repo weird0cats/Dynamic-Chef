@@ -100,10 +100,13 @@ public class TileEntityBrickOven extends TileEntity implements ITickable
 
          keepInventory = true;
 
-         if (check1) {
+         if (check1)
+         {
             world.setBlockState(pos, ModBlocks.brickOvenLit.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
             world.setBlockState(pos, ModBlocks.brickOvenLit.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
-         } else {
+         }
+         else
+         {
             world.setBlockState(pos, ModBlocks.brickOven.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
             world.setBlockState(pos, ModBlocks.brickOven.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
          }
@@ -242,9 +245,11 @@ public class TileEntityBrickOven extends TileEntity implements ITickable
    }
    
    @Override
-   public void readFromNBT(NBTTagCompound compound) {
+   public void readFromNBT(NBTTagCompound compound)
+   {
       super.readFromNBT(compound);
-      if (compound.hasKey("items")) {
+      if (compound.hasKey("items"))
+      {
          itemStackHandler.deserializeNBT((NBTTagCompound) compound.getTag("items"));
       }
       this.ovenBurnTime = compound.getInteger("BurnTime");
@@ -255,7 +260,8 @@ public class TileEntityBrickOven extends TileEntity implements ITickable
    }
 
    @Override
-   public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+   public NBTTagCompound writeToNBT(NBTTagCompound compound)
+   {
       compound = super.writeToNBT(compound);
       compound.setTag("items", itemStackHandler.serializeNBT());
       compound.setInteger("BurnTime", (short) this.ovenBurnTime);
@@ -275,7 +281,6 @@ public class TileEntityBrickOven extends TileEntity implements ITickable
       return super.hasCapability(capability, facing);
    }
    
-   @SuppressWarnings("unchecked")
    @Override
    @Nullable
    public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing)
