@@ -5,12 +5,10 @@ import java.io.File;
 import com.weird0cats.cropcraft.Config;
 import com.weird0cats.cropcraft.CropCraft;
 import com.weird0cats.cropcraft.ModBlocks;
+import com.weird0cats.cropcraft.ModItems;
 import com.weird0cats.cropcraft.blocks.BlockBrickOven;
 import com.weird0cats.cropcraft.blocks.BlockCookingPot;
 import com.weird0cats.cropcraft.crafting.Recipes;
-import com.weird0cats.cropcraft.items.Dough;
-import com.weird0cats.cropcraft.items.LupaBerry;
-import com.weird0cats.cropcraft.items.VitusBerry;
 import com.weird0cats.cropcraft.tileentity.TileEntityBrickOven;
 import com.weird0cats.cropcraft.tileentity.TileEntityCookingPot;
 
@@ -66,10 +64,7 @@ public class CommonProxy {
    @SubscribeEvent
    public static void registerItems(RegistryEvent.Register<Item> event)
    {
-      event.getRegistry().register(new LupaBerry(2,0.4f));
-      event.getRegistry().register(new VitusBerry(2,0.4f));
-      event.getRegistry().register(new Dough(1,0.2f));
-      
+      ModItems.init();
       event.getRegistry().register(new ItemBlock(ModBlocks.cookingPot).setRegistryName(ModBlocks.cookingPot.getRegistryName()));
       event.getRegistry().register(new ItemBlock(ModBlocks.brickOven).setRegistryName(ModBlocks.brickOven.getRegistryName()));
       event.getRegistry().register(new ItemBlock(ModBlocks.brickOvenLit.setLightLevel(0.875f)).setRegistryName(ModBlocks.brickOvenLit.getRegistryName()));

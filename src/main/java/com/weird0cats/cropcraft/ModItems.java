@@ -1,29 +1,28 @@
 package com.weird0cats.cropcraft;
 
-import com.weird0cats.cropcraft.items.Dough;
-import com.weird0cats.cropcraft.items.LupaBerry;
-import com.weird0cats.cropcraft.items.VitusBerry;
+import com.weird0cats.cropcraft.items.ItemFoodBase;
 
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ModItems
 {
-   @GameRegistry.ObjectHolder("cropcraft:lupaberry")
-   public static LupaBerry lupaBerry;
+   public static ItemFoodBase TOMATO_BERRY;
+   public static ItemFoodBase GRAPE_BERRY;
+   public static ItemFoodBase DOUGH;
 
-   @GameRegistry.ObjectHolder("cropcraft:vitusberry")
-   public static VitusBerry vitusBerry;
-
-   @GameRegistry.ObjectHolder("cropcraft:dough")
-   public static Dough dough;
-
+   public static void init()
+   {
+      TOMATO_BERRY = new ItemFoodBase("lupaberry", 2, 0.4f, false);
+      GRAPE_BERRY = new ItemFoodBase("vitusberry", 2, 0.4f, false);
+      DOUGH = new ItemFoodBase("dough", 1, 0.2f, false);
+   }
+   
    @SideOnly(Side.CLIENT)
    public static void initModels()
    {
-      lupaBerry.initModel();
-      vitusBerry.initModel();
-      dough.initModel();
+      TOMATO_BERRY.initModel();
+      GRAPE_BERRY.initModel();
+      DOUGH.initModel();
    }
 }

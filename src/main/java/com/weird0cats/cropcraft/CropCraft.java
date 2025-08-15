@@ -2,9 +2,11 @@ package com.weird0cats.cropcraft;
 
 import org.apache.logging.log4j.Logger;
 
+import com.weird0cats.cropcraft.compat.crafttweaker.CraftTweakerHelper;
 import com.weird0cats.cropcraft.proxy.CommonProxy;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -16,7 +18,7 @@ public class CropCraft
 {
    public static final String MODID = "cropcraft";
    public static final String NAME = "CropCraft";
-   public static final String VERSION = "0.0.3";
+   public static final String VERSION = "0.1.0";
 
    @SidedProxy(clientSide = "com.weird0cats.cropcraft.proxy.ClientProxy",serverSide = "com.weird0cats.cropcraft.proxy.ServerProxy")
    public static CommonProxy proxy;
@@ -32,6 +34,10 @@ public class CropCraft
    {
       logger = event.getModLog();
       proxy.preInit(event);
+
+      if (Loader.isModLoaded("crafttweaker")) {
+			CraftTweakerHelper.preInit();
+		}
    }
 
    @Mod.EventHandler

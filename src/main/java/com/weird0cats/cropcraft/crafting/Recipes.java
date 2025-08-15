@@ -3,6 +3,8 @@ package com.weird0cats.cropcraft.crafting;
 import java.util.List;
 import java.util.ArrayList;
 
+import com.weird0cats.cropcraft.ModItems;
+
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
@@ -38,6 +40,6 @@ public class Recipes
 
    public static void addBrickOvenRecipes()
    {
-      brickOvenRecipes.add(new BrickOvenRecipe(new ItemStack(Items.COOKED_BEEF), new ItemStack(Items.BEEF)));
+      brickOvenRecipes.add(new BrickOvenRecipe(new ItemStack(Items.BREAD), new ItemStack(ModItems.DOUGH)));
    }
 }

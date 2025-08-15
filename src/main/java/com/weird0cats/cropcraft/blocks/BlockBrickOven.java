@@ -11,7 +11,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -39,8 +38,6 @@ public class BlockBrickOven extends Block implements ITileEntityProvider
    
    public static final PropertyDirection FACING = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL);
 
-   public static PropertyBool LIT = PropertyBool.create("lit");
-
    public BlockBrickOven(String name, boolean lit)
    {
       super(Material.ROCK);
@@ -56,14 +53,13 @@ public class BlockBrickOven extends Block implements ITileEntityProvider
    @Override
    public IBlockState getStateForPlacement(World world, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
    {
-      return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite()).withProperty(LIT, false);
+      return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
    }
    
    @Override
    public IBlockState getStateFromMeta(int meta)
    {
-      IBlockState state = this.getDefaultState().withProperty(LIT, (meta & 4) > 0);
-      return state.withProperty(FACING, EnumFacing.byIndex(5 - (meta & 3)));
+      return this.getDefaultState().withProperty(FACING, EnumFacing.byIndex(5 - (meta & 3)));
 
    }
 
@@ -71,11 +67,6 @@ public class BlockBrickOven extends Block implements ITileEntityProvider
    public int getMetaFromState(IBlockState state)
    {
       int meta = 0;
-
-      if (state.getValue(LIT))
-      {
-         meta |= 4;
-      }
 
       meta |= 5 - ((EnumFacing) state.getValue(FACING)).getIndex();
 
@@ -85,20 +76,6 @@ public class BlockBrickOven extends Block implements ITileEntityProvider
    private TileEntityBrickOven getTE(IBlockAccess world, BlockPos pos)
    {
       return (TileEntityBrickOven) world.getTileEntity(pos);
-   }
-
-   @Override
-   public int getLightValue(IBlockState state)
-   {
-      if (state.getValue(LIT)) return 13;
-      return super.getLightValue(state);
-   }
-
-   @Override
-   public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
-   {
-      state = state.withProperty(LIT, getTE(world, pos).isBurning());
-      return state;
    }
 
    @Override
@@ -115,7 +92,7 @@ public class BlockBrickOven extends Block implements ITileEntityProvider
    @Override
    protected BlockStateContainer createBlockState()
    {
-      return new BlockStateContainer(this, new IProperty[] { FACING, LIT });
+      return new BlockStateContainer(this, new IProperty[] { FACING });
    }
 
    @SideOnly(Side.CLIENT)
