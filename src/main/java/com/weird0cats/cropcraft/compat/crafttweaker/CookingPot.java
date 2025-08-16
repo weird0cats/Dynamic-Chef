@@ -19,48 +19,48 @@ public class CookingPot
    public static void addRecipe(@NotNull IItemStack output, IIngredient[] inputs)
    {
       if (inputs.length > 6)
-		{
-			throw new IllegalArgumentException("Cooking Pot recipe has at most 6 inputs");
-		}
-		ICookingPotRecipe recipe = new CrTCookingPotRecipe(CraftTweakerMC.getItemStack(output), inputs);
-		CraftTweakerAPI.apply(new Add(recipe));
+      {
+         throw new IllegalArgumentException("Cooking Pot recipe has at most 6 inputs");
+      }
+      ICookingPotRecipe recipe = new CrTCookingPotRecipe(CraftTweakerMC.getItemStack(output), inputs);
+      CraftTweakerAPI.apply(new Add(recipe));
    }
 
-	@ZenMethod
+   @ZenMethod
    public static void addRecipe(@NotNull IItemStack output, @NotNull IIngredient[] inputs, int time)
    {
       if (inputs.length > 6)
-		{
-			throw new IllegalArgumentException("Cooking Pot recipe has at most 6 inputs");
-		}
-		if (time < 0)
-		{
-			throw new IllegalArgumentException("Cook time must be positive");
-		}
-		ICookingPotRecipe recipe = new CrTCookingPotRecipe(CraftTweakerMC.getItemStack(output), inputs, time);
-		CraftTweakerAPI.apply(new Add(recipe));
+      {
+         throw new IllegalArgumentException("Cooking Pot recipe has at most 6 inputs");
+      }
+      if (time < 0)
+      {
+         throw new IllegalArgumentException("Cook time must be positive");
+      }
+      ICookingPotRecipe recipe = new CrTCookingPotRecipe(CraftTweakerMC.getItemStack(output), inputs, time);
+      CraftTweakerAPI.apply(new Add(recipe));
    }
 
 
-	private static class Add implements IAction
-	{
-		private final ICookingPotRecipe recipe;
+   private static class Add implements IAction
+   {
+      private final ICookingPotRecipe recipe;
 
-		public Add(ICookingPotRecipe recipe)
-		{
-			this.recipe = recipe;
-		}
+      public Add(ICookingPotRecipe recipe)
+      {
+         this.recipe = recipe;
+      }
 
-		@Override
-		public void apply()
-		{
-			Recipes.cookingPotRecipes.add(recipe);
-		}
+      @Override
+      public void apply()
+      {
+         Recipes.cookingPotRecipes.add(recipe);
+      }
 
-		@Override
-		public String describe()
-		{
-			return "Adding Boiling Recipe for Item" + recipe.getResult().getDisplayName();
-		}
-	}
+      @Override
+      public String describe()
+      {
+         return "Adding Boiling Recipe for Item" + recipe.getResult().getDisplayName();
+      }
+   }
 }

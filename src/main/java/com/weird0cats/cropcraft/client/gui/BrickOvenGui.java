@@ -45,7 +45,7 @@ public class BrickOvenGui extends GuiContainer
       if (te.isBurning())
       {
 			int k = this.getBurnLeftScaled(13);
-			this.drawTexturedModalRect(guiLeft + 71, guiTop + 46 + 12 - k, 176, 12 - k, 14, k + 1);
+			this.drawTexturedModalRect(guiLeft + 70, guiTop + 45 + 12 - k, 176, 12 - k, 14, k + 1);
 		}
 
       int l = this.getCookProgressScaled(23);
