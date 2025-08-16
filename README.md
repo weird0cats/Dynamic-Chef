@@ -8,7 +8,6 @@ REQUIREMENTS:
 **JUST BECAUSE IT BUILDS DOESN'T MEAN IT WORKS**
 
 TODO
-- Implementing a cooking system
 - Adding some new crops
 - mod compatibility
     - rustic
@@ -18,6 +17,7 @@ TODO
     - more that I see
 
 DONE
+- Implementing a new cooking system
 - mod compatibility
     - crafttweaker
     - jei
