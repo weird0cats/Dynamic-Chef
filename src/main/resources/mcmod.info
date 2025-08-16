@@ -1,7 +1,7 @@
 [
 {
-  "modid": "cropcraft",
-  "name": "CropCraft",
+  "modid": "dynamicchef",
+  "name": "Dynamic Chef",
   "description": "Meant to add more crops and a cooking system to the game.",
   "version": "${version}",
   "mcversion": "${mcversion}",

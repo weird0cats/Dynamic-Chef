@@ -14,8 +14,8 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 version = '0.1.0'
-group = 'com.weird0cats.cropcraft' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = 'cropcraft'
+group = 'com.weird0cats.dynamicchef' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = 'dynamicchef'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.
 repositories {
@@ -77,12 +77,12 @@ dependencies {
 jar {
     manifest {
         attributes([
-            "Specification-Title": "cropcraft",
-            "Specification-Vendor": "cropcraftsareus",
+            "Specification-Title": "dynamicchef",
+            "Specification-Vendor": "dynamicchefsareus",
             "Specification-Version": "1", // We are version 1 of ourselves
             "Implementation-Title": project.name,
             "Implementation-Version": "${version}",
-            "Implementation-Vendor" :"cropcraftsareus",
+            "Implementation-Vendor" :"dynamicchefsareus",
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }

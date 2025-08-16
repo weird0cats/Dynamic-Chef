@@ -1,6 +1,0 @@
-# Made in Blockbench 4.12.6
-newmtl base
-map_Kd cropcraft:blocks/cookingpot/base
-newmtl handles
-map_Kd cropcraft:blocks/cookingpot/handles
-newmtl none

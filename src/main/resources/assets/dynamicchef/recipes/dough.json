@@ -1,0 +1,18 @@
+{
+   "type": "minecraft:crafting_shaped",
+   "pattern": [
+      "WB"
+   ],
+   "key": {
+      "W":{
+         "item": "minecraft:wheat"
+      },
+      "B": {
+         "item": "minecraft:water_bucket"
+      }
+   },
+   "result": {
+      "item": "dynamicchef:dough",
+      "count": 1
+   }
+}

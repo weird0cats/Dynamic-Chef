@@ -1,4 +1,4 @@
-# CropCraft mod
+# Dynamic Chef mod
 
 REQUIREMENTS:
 - forge 1.12.2
@@ -7,14 +7,17 @@ REQUIREMENTS:
 
 **JUST BECAUSE IT BUILDS DOESN'T MEAN IT WORKS**
 
-PLANS
+TODO
 - Implementing a cooking system
 - Adding some new crops
 - mod compatibility
     - rustic
     - Pam's harvestcraft(maybe, but it adds so much food)
     - food expansion
-    - crafttweaker
-    - groovyscript
-    - jei
+    - groovyscript(maybe)
     - more that I see
+
+DONE
+- mod compatibility
+    - crafttweaker
+    - jei

@@ -1,0 +1,18 @@
+#The Mod
+itemGroup.dynamicchef=Dynamic Chef
+
+#Items
+item.dynamicchef.lupaberry.name=Lupa Berry
+item.dynamicchef.vitusberry.name=Vitus Berry
+item.dynamicchef.dough.name=Dough
+
+#Blocks
+tile.dynamicchef.cookingpot.name=Cooking Pot
+tile.dynamicchef.brickoven.name=Brick Oven
+tile.dynamicchef.brickovenlit.name=Brick Oven
+container.dynamicchef.brickoven=Brick Oven
+container.dynamicchef.cookingpot=Cooking Pot
+
+#Jei Categories
+dynamicchef.jei.recipe.boiling=Boiling
+dynamicchef.jei.recipe.baking=Baking
