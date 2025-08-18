@@ -2,16 +2,20 @@
 itemGroup.dynamicchef=Dynamic Chef
 
 #Items
-item.dynamicchef.lupaberry.name=Lupa Berry
-item.dynamicchef.vitusberry.name=Vitus Berry
+item.dynamicchef.lupa_berry.name=Lupa Berry
+item.dynamicchef.vitus_berry.name=Vitus Berry
 item.dynamicchef.dough.name=Dough
+item.dynamicchef.uranium_cookie.name=Uranium Cookie
 
 #Blocks
-tile.dynamicchef.cookingpot.name=Cooking Pot
-tile.dynamicchef.brickoven.name=Brick Oven
-tile.dynamicchef.brickovenlit.name=Brick Oven
+tile.dynamicchef.cooking_pot.name=Cooking Pot
+tile.dynamicchef.brick_oven.name=Brick Oven
+tile.dynamicchef.brick_ovenlit.name=Brick Oven
 container.dynamicchef.brickoven=Brick Oven
 container.dynamicchef.cookingpot=Cooking Pot
+
+#Tooltips
+tooltip.dynamicchef.uranium_cookie=Yummy!
 
 #Jei Categories
 dynamicchef.jei.recipe.boiling=Boiling

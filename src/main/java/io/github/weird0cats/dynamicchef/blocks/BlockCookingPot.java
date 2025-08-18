@@ -35,8 +35,8 @@ public class BlockCookingPot extends Block implements ITileEntityProvider
    public BlockCookingPot()
    {
       super(Material.IRON);
-      setTranslationKey(DynamicChef.MODID + ".cookingpot"); //WORMK! :D
-      setRegistryName("cookingpot");
+      setTranslationKey(DynamicChef.MODID + ".cooking_pot"); //WORMK! :D
+      setRegistryName("cooking_pot");
       setCreativeTab(DynamicChef.modTab);
       setHardness(1F);
    }

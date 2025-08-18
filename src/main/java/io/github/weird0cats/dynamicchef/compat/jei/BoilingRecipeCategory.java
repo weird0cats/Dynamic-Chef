@@ -15,7 +15,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 
-@SuppressWarnings("rawtypes")
+@SuppressWarnings({ "rawtypes", "deprecation" })
 public class BoilingRecipeCategory extends BlankRecipeCategory
 {
    private final IDrawable background;

@@ -17,6 +17,7 @@ public class DynamicChefJEIPlugin implements IModPlugin
 {
    public static IRecipeRegistry recipeRegistry;
 
+   @SuppressWarnings("deprecation")
    @Override
    public void register(IModRegistry reg)
    {

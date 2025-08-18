@@ -19,7 +19,7 @@ public class DynamicChef
    public static final String NAME = "Dynamic Chef";
    public static final String VERSION = "0.1.0";
 
-   @SidedProxy(clientSide = "com.weird0cats.dynamicchef.proxy.ClientProxy",serverSide = "com.weird0cats.dynamicchef.proxy.ServerProxy")
+   @SidedProxy(clientSide = "io.github.weird0cats.dynamicchef.proxy.ClientProxy",serverSide = "io.github.weird0cats.dynamicchef.proxy.ServerProxy")
    public static CommonProxy proxy;
     
    @Mod.Instance

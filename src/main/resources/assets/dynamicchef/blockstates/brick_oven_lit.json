@@ -1,7 +1,7 @@
 {
    "forge_marker": 1,
    "defaults": {
-      "model": "dynamicchef:brickovenlit"
+      "model": "dynamicchef:brick_oven_lit"
    },
    "variants": {
       "normal": [{}],

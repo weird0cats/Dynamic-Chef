@@ -1,0 +1,23 @@
+{
+   "forge_marker":1,
+   "defaults":
+   {
+      "custom": {"flip-v":true},
+      "model": "dynamicchef:cooking_pot.obj",
+      "textures":{
+         "#handles":"dynamicchef:blocks/cooking_pot/handles",
+         "#base":"dynamicchef:blocks/cooking_pot/base"
+      }
+   },
+   "variants":
+   {
+      "normal":[{}],
+      "inventory":[{ 
+         "model": "dynamicchef:cooking_pot.obj",
+         "transform":"forge:default-block"}],
+      "facing=north": { "model": "dynamicchef:cooking_pot.obj" },
+      "facing=east": { "model": "dynamicchef:cooking_pot.obj", "y": 90 },
+      "facing=south": { "model": "dynamicchef:cooking_pot.obj", "y": 180 },
+      "facing=west": { "model": "dynamicchef:cooking_pot.obj", "y": 270 }
+   }
+}

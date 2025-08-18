@@ -14,7 +14,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 version = '0.1.0'
-group = 'com.weird0cats.dynamicchef' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'io.github.weird0cats.dynamicchef' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'dynamicchef'
 
 sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '1.8' // Need this here so eclipse task generates correctly.

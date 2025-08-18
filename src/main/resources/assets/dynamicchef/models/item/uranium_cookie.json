@@ -1,6 +1,6 @@
 {
    "parent": "item/generated",
    "textures": {
-      "layer0": "dynamicchef:items/lupaberry"
+      "layer0": "dynamicchef:items/uranium_cookie"
    }
 }

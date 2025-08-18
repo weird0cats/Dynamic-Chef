@@ -8,13 +8,13 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ModBlocks
 {
-   @GameRegistry.ObjectHolder("dynamicchef:cookingpot")
+   @GameRegistry.ObjectHolder("dynamicchef:cooking_pot")
    public static BlockCookingPot cookingPot;
 
-   @GameRegistry.ObjectHolder("dynamicchef:brickoven")
+   @GameRegistry.ObjectHolder("dynamicchef:brick_oven")
    public static BlockBrickOven brickOven;
 
-   @GameRegistry.ObjectHolder("dynamicchef:brickovenlit")
+   @GameRegistry.ObjectHolder("dynamicchef:brick_oven_lit")
    public static BlockBrickOven brickOvenLit;
 
    @SideOnly(Side.CLIENT)

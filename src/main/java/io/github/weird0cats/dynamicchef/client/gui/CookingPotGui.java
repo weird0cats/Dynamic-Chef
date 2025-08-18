@@ -12,7 +12,7 @@ public class CookingPotGui extends GuiContainer
    public static final int WIDTH = 176;
    public static final int HEIGHT = 166;
 
-   private static final ResourceLocation background = new ResourceLocation(DynamicChef.MODID, "textures/gui/cookingpot.png");
+   private static final ResourceLocation background = new ResourceLocation(DynamicChef.MODID, "textures/gui/cooking_pot.png");
 
    private final TileEntityCookingPot te;
    private final InventoryPlayer playerInv;

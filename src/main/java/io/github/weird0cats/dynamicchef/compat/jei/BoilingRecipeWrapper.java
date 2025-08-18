@@ -9,6 +9,7 @@ import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.BlankRecipeWrapper;
 import net.minecraft.item.ItemStack;
 
+@SuppressWarnings("deprecation")
 public class BoilingRecipeWrapper extends BlankRecipeWrapper
 {
    public ICookingPotRecipe recipe;
