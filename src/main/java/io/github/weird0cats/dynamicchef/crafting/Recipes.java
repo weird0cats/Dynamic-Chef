@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class Recipes
 {
@@ -35,12 +36,15 @@ public class Recipes
 
    public static void addCookingPotRecipes()
    {
-      //test recipe, cooking beef
       cookingPotRecipes.add(new CookingPotRecipe(new ItemStack(Items.COOKED_BEEF), new ItemStack(Items.BEEF)));
    }
 
    public static void addBrickOvenRecipes()
    {
       brickOvenRecipes.add(new BrickOvenRecipe(new ItemStack(Items.BREAD), new ItemStack(ModItems.DOUGH)));
+      if (OreDictionary.doesOreNameExist("oreUranium"))
+      {
+         brickOvenRecipes.add(new BrickOvenRecipe(new ItemStack(ModItems.RADCOOKIE, 8), new ItemStack(ModItems.DOUGH), "oreUranium"));
+      }
    }
 }

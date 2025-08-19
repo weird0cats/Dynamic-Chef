@@ -13,7 +13,6 @@ TODO
     - rustic
     - Pam's harvestcraft(maybe, but it adds so much food)
     - food expansion
-    - groovyscript(maybe)
     - more that I see
 
 DONE
@@ -21,3 +20,4 @@ DONE
 - mod compatibility
     - crafttweaker
     - jei
+    - should be compatible with any food mod that actually adds oredict entries
