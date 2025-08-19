@@ -1,6 +1,6 @@
 # Made in Blockbench 4.12.6
 newmtl base
-map_Kd dynamicchef:blocks/cookingpot/base
+map_Kd dynamicchef:blocks/cooking_pot_base
 newmtl handles
-map_Kd dynamicchef:blocks/cookingpot/handles
+map_Kd dynamicchef:blocks/cooking_pot_handles
 newmtl none
