@@ -63,7 +63,6 @@ minecraft {
 }
 
 dependencies {
-    //the originak instructions lie, use implementation for everything you want to add
     minecraft 'net.minecraftforge:forge:1.12.2-14.23.5.2859'
       
     implementation "CraftTweaker2:CraftTweaker2-API:4.1.20.554"

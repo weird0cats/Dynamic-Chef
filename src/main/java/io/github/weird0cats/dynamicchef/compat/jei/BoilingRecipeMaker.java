@@ -11,7 +11,7 @@ public class BoilingRecipeMaker
 {
    public static List<ICookingPotRecipe> getBoilingRecipes(IJeiHelpers helpers)
    {
-      List<ICookingPotRecipe> recipes = new ArrayList<ICookingPotRecipe>();
+      List<ICookingPotRecipe> recipes = new ArrayList<>();
       
       for (ICookingPotRecipe recipe : Recipes.cookingPotRecipes)
       {

@@ -5,8 +5,8 @@
       "custom": {"flip-v":true},
       "model": "dynamicchef:cooking_pot.obj",
       "textures":{
-         "#handles":"dynamicchef:blocks/cooking_pot/handles",
-         "#base":"dynamicchef:blocks/cooking_pot/base"
+         "#handles":"dynamicchef:blocks/cooking_pot_handles",
+         "#base":"dynamicchef:blocks/cooking_pot_base"
       }
    },
    "variants":

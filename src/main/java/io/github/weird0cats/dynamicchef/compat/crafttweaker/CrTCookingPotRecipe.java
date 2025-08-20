@@ -70,19 +70,19 @@ public class CrTCookingPotRecipe implements ICookingPotRecipe
    @Override
    public List<List<ItemStack>> getInputs()
    {
-      List<List<ItemStack>> inputs = new ArrayList<>();
+      List<List<ItemStack>> inputLists = new ArrayList<>();
       for (IIngredient input : this.inputs)
       {
          if (input == null)
          {
-            inputs.add(new ArrayList<>());
+            inputLists.add(new ArrayList<>());
          }
          else
          {
-            inputs.add(input.getItems().stream().map(CraftTweakerMC::getItemStack).collect(Collectors.toList()));
+            inputLists.add(input.getItems().stream().map(CraftTweakerMC::getItemStack).collect(Collectors.toList()));
          }
       }
-      return inputs;
+      return inputLists;
    }
 
    @Override

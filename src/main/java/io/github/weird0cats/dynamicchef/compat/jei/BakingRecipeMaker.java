@@ -11,8 +11,7 @@ public class BakingRecipeMaker
 {
    public static List<IBrickOvenRecipe> getBakingRecipes(IJeiHelpers helpers)
    {
-      @SuppressWarnings("Convert2Diamond")
-      List<IBrickOvenRecipe> recipes = new ArrayList<IBrickOvenRecipe>();
+      List<IBrickOvenRecipe> recipes = new ArrayList<>();
       
       for (IBrickOvenRecipe recipe : Recipes.brickOvenRecipes)
       {
