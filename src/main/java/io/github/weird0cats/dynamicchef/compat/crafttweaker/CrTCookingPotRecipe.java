@@ -10,7 +10,7 @@ import javax.annotation.Nonnull;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
-import io.github.weird0cats.dynamicchef.crafting.ICookingPotRecipe;
+import io.github.weird0cats.dynamicchef.common.crafting.ICookingPotRecipe;
 import net.minecraft.item.ItemStack;
 
 public class CrTCookingPotRecipe implements ICookingPotRecipe

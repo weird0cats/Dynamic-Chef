@@ -3,7 +3,7 @@ package io.github.weird0cats.dynamicchef.compat.jei;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.weird0cats.dynamicchef.crafting.ICookingPotRecipe;
+import io.github.weird0cats.dynamicchef.common.crafting.ICookingPotRecipe;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.BlankRecipeWrapper;

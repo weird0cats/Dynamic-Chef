@@ -1,5 +1,6 @@
 package io.github.weird0cats.dynamicchef;
 
+import io.github.weird0cats.dynamicchef.common.blocks.ModBlocks;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.relauncher.Side;

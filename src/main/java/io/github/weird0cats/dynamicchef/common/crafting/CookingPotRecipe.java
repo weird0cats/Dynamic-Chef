@@ -1,4 +1,4 @@
-package io.github.weird0cats.dynamicchef.crafting;
+package io.github.weird0cats.dynamicchef.common.crafting;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,12 +1,11 @@
-package io.github.weird0cats.dynamicchef.blocks;
+package io.github.weird0cats.dynamicchef.common.blocks;
 
-import static io.github.weird0cats.dynamicchef.tileentity.TileEntityBrickOven.keepInventory;
+import static io.github.weird0cats.dynamicchef.common.tileentity.TileEntityBrickOven.keepInventory;
 
 import java.util.Random;
 
 import io.github.weird0cats.dynamicchef.DynamicChef;
-import io.github.weird0cats.dynamicchef.ModBlocks;
-import io.github.weird0cats.dynamicchef.tileentity.TileEntityBrickOven;
+import io.github.weird0cats.dynamicchef.common.tileentity.TileEntityBrickOven;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;

@@ -4,19 +4,27 @@ import java.io.File;
 
 import io.github.weird0cats.dynamicchef.Config;
 import io.github.weird0cats.dynamicchef.DynamicChef;
-import io.github.weird0cats.dynamicchef.ModBlocks;
-import io.github.weird0cats.dynamicchef.ModItems;
-import io.github.weird0cats.dynamicchef.blocks.BlockBrickOven;
-import io.github.weird0cats.dynamicchef.blocks.BlockCookingPot;
-import io.github.weird0cats.dynamicchef.crafting.Recipes;
-import io.github.weird0cats.dynamicchef.tileentity.TileEntityBrickOven;
-import io.github.weird0cats.dynamicchef.tileentity.TileEntityCookingPot;
+import io.github.weird0cats.dynamicchef.common.blocks.BlockBrickOven;
+import io.github.weird0cats.dynamicchef.common.blocks.BlockCookingPot;
+import io.github.weird0cats.dynamicchef.common.blocks.ModBlocks;
+import io.github.weird0cats.dynamicchef.common.crafting.Recipes;
+import io.github.weird0cats.dynamicchef.common.items.ModItems;
+import io.github.weird0cats.dynamicchef.common.potions.PotionsRegistry;
+import io.github.weird0cats.dynamicchef.common.tileentity.TileEntityBrickOven;
+import io.github.weird0cats.dynamicchef.common.tileentity.TileEntityCookingPot;
+import io.github.weird0cats.dynamicchef.common.util.DynamicChefUtils;
 import net.minecraft.block.Block;
+import net.minecraft.entity.passive.EntityAnimal;
+import net.minecraft.entity.passive.EntityParrot;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
+import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -34,6 +42,7 @@ public class CommonProxy {
       File directory = e.getModConfigurationDirectory();
       config = new Configuration(new File(directory.getPath(), "dynamicchef.cfg"));
       Config.readConfig();
+      PotionsRegistry.init();
    }
 
    public void init(FMLInitializationEvent e)
@@ -74,5 +83,26 @@ public class CommonProxy {
    public static void initRecipe(RegistryEvent.Register<IRecipe> event)
    {
       Recipes.init();
+   }
+
+   @SubscribeEvent
+   public static void onEntityInteract(EntityInteract event)
+   {
+      if (event.getTarget() instanceof EntityParrot)
+      {
+         ItemStack equippedItem = event.getEntityPlayer().getHeldItem(event.getHand());
+         EntityAnimal targetAnimal = (EntityAnimal) event.getTarget();
+
+         if (equippedItem.getItem() == ModItems.RADCOOKIE)
+         {
+				EntityPlayer player = event.getEntityPlayer();
+            if (!player.capabilities.isCreativeMode)
+            {
+               equippedItem.shrink(1);
+            }
+            targetAnimal.addPotionEffect(new PotionEffect(PotionsRegistry.RADIATION_POTION, 4000, 6, false, true));
+            targetAnimal.attackEntityFrom(DynamicChefUtils.RADIATION_DAMAGE, 10.0F);
+         } 
+      }
    }
 }

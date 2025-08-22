@@ -1,7 +1,7 @@
-package io.github.weird0cats.dynamicchef.blocks;
+package io.github.weird0cats.dynamicchef.common.blocks;
 
 import io.github.weird0cats.dynamicchef.DynamicChef;
-import io.github.weird0cats.dynamicchef.tileentity.TileEntityCookingPot;
+import io.github.weird0cats.dynamicchef.common.tileentity.TileEntityCookingPot;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;

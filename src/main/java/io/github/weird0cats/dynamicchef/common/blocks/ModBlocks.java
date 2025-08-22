@@ -1,7 +1,5 @@
-package io.github.weird0cats.dynamicchef;
+package io.github.weird0cats.dynamicchef.common.blocks;
 
-import io.github.weird0cats.dynamicchef.blocks.BlockBrickOven;
-import io.github.weird0cats.dynamicchef.blocks.BlockCookingPot;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;

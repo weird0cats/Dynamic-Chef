@@ -1,6 +1,6 @@
 package io.github.weird0cats.dynamicchef.compat.jei;
 
-import io.github.weird0cats.dynamicchef.crafting.ICookingPotRecipe;
+import io.github.weird0cats.dynamicchef.common.crafting.ICookingPotRecipe;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
 

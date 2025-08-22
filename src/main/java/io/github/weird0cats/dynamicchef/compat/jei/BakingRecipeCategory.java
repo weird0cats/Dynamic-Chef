@@ -1,6 +1,6 @@
 package io.github.weird0cats.dynamicchef.compat.jei;
 
-import io.github.weird0cats.dynamicchef.tileentity.TileEntityBrickOven;
+import io.github.weird0cats.dynamicchef.common.tileentity.TileEntityBrickOven;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;

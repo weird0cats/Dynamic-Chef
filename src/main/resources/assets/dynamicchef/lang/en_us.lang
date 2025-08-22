@@ -14,8 +14,14 @@ tile.dynamicchef.brick_ovenlit.name=Brick Oven
 container.dynamicchef.brickoven=Brick Oven
 container.dynamicchef.cookingpot=Cooking Pot
 
+#Potion Effects
+effect.radiation=Radiation
+
 #Tooltips
 tooltip.dynamicchef.uranium_cookie=Yummy!
+
+#Deaths
+death.attack.radiation=%1$s died of radiation poisoning.
 
 #Jei Categories
 dynamicchef.jei.recipe.boiling=Boiling

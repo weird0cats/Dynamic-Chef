@@ -1,8 +1,8 @@
 package io.github.weird0cats.dynamicchef.compat.jei;
 
-import io.github.weird0cats.dynamicchef.ModBlocks;
-import io.github.weird0cats.dynamicchef.crafting.IBrickOvenRecipe;
-import io.github.weird0cats.dynamicchef.crafting.ICookingPotRecipe;
+import io.github.weird0cats.dynamicchef.common.blocks.ModBlocks;
+import io.github.weird0cats.dynamicchef.common.crafting.IBrickOvenRecipe;
+import io.github.weird0cats.dynamicchef.common.crafting.ICookingPotRecipe;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.IJeiHelpers;
 import mezz.jei.api.IJeiRuntime;

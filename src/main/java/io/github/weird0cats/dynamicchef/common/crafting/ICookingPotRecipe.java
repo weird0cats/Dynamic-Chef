@@ -1,10 +1,10 @@
-package io.github.weird0cats.dynamicchef.crafting;
+package io.github.weird0cats.dynamicchef.common.crafting;
 
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
 
-public interface IBrickOvenRecipe
+public interface ICookingPotRecipe
 {
    public boolean matches(ItemStack[] inputs);
    public List<List<ItemStack>> getInputs();

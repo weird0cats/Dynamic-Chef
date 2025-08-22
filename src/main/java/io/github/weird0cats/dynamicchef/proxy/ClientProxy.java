@@ -1,8 +1,8 @@
 package io.github.weird0cats.dynamicchef.proxy;
 
 import io.github.weird0cats.dynamicchef.DynamicChef;
-import io.github.weird0cats.dynamicchef.ModBlocks;
-import io.github.weird0cats.dynamicchef.ModItems;
+import io.github.weird0cats.dynamicchef.common.blocks.ModBlocks;
+import io.github.weird0cats.dynamicchef.common.items.ModItems;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fml.common.Mod;

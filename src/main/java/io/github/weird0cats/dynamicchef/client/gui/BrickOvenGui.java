@@ -1,8 +1,8 @@
 package io.github.weird0cats.dynamicchef.client.gui;
 
 import io.github.weird0cats.dynamicchef.DynamicChef;
-import io.github.weird0cats.dynamicchef.tileentity.ContainerBrickOven;
-import io.github.weird0cats.dynamicchef.tileentity.TileEntityBrickOven;
+import io.github.weird0cats.dynamicchef.common.tileentity.ContainerBrickOven;
+import io.github.weird0cats.dynamicchef.common.tileentity.TileEntityBrickOven;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;

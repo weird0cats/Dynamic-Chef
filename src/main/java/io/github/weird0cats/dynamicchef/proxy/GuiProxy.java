@@ -2,10 +2,10 @@ package io.github.weird0cats.dynamicchef.proxy;
 
 import io.github.weird0cats.dynamicchef.client.gui.BrickOvenGui;
 import io.github.weird0cats.dynamicchef.client.gui.CookingPotGui;
-import io.github.weird0cats.dynamicchef.tileentity.ContainerBrickOven;
-import io.github.weird0cats.dynamicchef.tileentity.ContainerCookingPot;
-import io.github.weird0cats.dynamicchef.tileentity.TileEntityBrickOven;
-import io.github.weird0cats.dynamicchef.tileentity.TileEntityCookingPot;
+import io.github.weird0cats.dynamicchef.common.tileentity.ContainerBrickOven;
+import io.github.weird0cats.dynamicchef.common.tileentity.ContainerCookingPot;
+import io.github.weird0cats.dynamicchef.common.tileentity.TileEntityBrickOven;
+import io.github.weird0cats.dynamicchef.common.tileentity.TileEntityCookingPot;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;

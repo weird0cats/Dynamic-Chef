@@ -1,8 +1,8 @@
-package io.github.weird0cats.dynamicchef.crafting;
+package io.github.weird0cats.dynamicchef.common.crafting;
 
 import java.util.List;
 
-import io.github.weird0cats.dynamicchef.ModItems;
+import io.github.weird0cats.dynamicchef.common.items.ModItems;
 
 import java.util.ArrayList;
 

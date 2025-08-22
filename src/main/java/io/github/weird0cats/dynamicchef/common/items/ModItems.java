@@ -1,14 +1,15 @@
-package io.github.weird0cats.dynamicchef;
+package io.github.weird0cats.dynamicchef.common.items;
 
 import java.util.List;
 
 import javax.annotation.Nullable;
 
-import io.github.weird0cats.dynamicchef.items.ItemFoodBase;
+import io.github.weird0cats.dynamicchef.common.potions.PotionsRegistry;
+import io.github.weird0cats.dynamicchef.common.util.DynamicChefUtils;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.translation.I18n;
 import net.minecraft.world.World;
@@ -41,7 +42,7 @@ public class ModItems
          {
             if (!worldIn.isRemote)
             {
-               player.attackEntityFrom(DamageSource.WITHER, 19.0F);
+               player.addPotionEffect(new PotionEffect(PotionsRegistry.RADIATION_POTION, 1200, 0));
             }
          }
 

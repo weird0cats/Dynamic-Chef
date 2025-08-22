@@ -1,4 +1,4 @@
-package io.github.weird0cats.dynamicchef.tileentity;
+package io.github.weird0cats.dynamicchef.common.tileentity;
 
 import javax.annotation.Nonnull;
 
@@ -13,18 +13,18 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
 
-public class ContainerBrickOven extends Container 
+public class ContainerCookingPot extends Container 
 {
-   private final TileEntityBrickOven te;
+   private final TileEntityCookingPot te;
 
-   public ContainerBrickOven(IInventory playerInventory, TileEntityBrickOven te)
+   public ContainerCookingPot(IInventory playerInventory, TileEntityCookingPot te)
    {
-      this.te = te;
+      this.te=te;
       addOwnSlots();
       addPlayerSlots(playerInventory);
    }
 
-   public TileEntityBrickOven getTile()
+   public TileEntityCookingPot getTile()
    {
       return te;
    }
@@ -52,7 +52,7 @@ public class ContainerBrickOven extends Container
    private void addOwnSlots()
    {
       IItemHandler itemHandler = this.te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityBrickOven.RESULT_SLOT, 123, 35)
+      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.RESULT_SLOT, 123, 35)
       {
          @Override
          public boolean isItemValid(@Nonnull ItemStack stack)
@@ -60,7 +60,7 @@ public class ContainerBrickOven extends Container
             return false;
          }
       });
-      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityBrickOven.FUEL_SLOT, 70, 62)
+      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.FUEL_SLOT, 70, 62)
       {
          @Override
 			public boolean isItemValid(@Nonnull ItemStack stack)
@@ -68,12 +68,12 @@ public class ContainerBrickOven extends Container
 				return super.isItemValid(stack) && TileEntityFurnace.isItemFuel(stack);
 			}
       });
-      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityBrickOven.INPUT_SLOTS_START+0, 11, 22));
-      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityBrickOven.INPUT_SLOTS_START+1, 30, 22));
-      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityBrickOven.INPUT_SLOTS_START+2, 49, 22));
-      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityBrickOven.INPUT_SLOTS_START+3, 11, 41));
-      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityBrickOven.INPUT_SLOTS_START+4, 30, 41));
-      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityBrickOven.INPUT_SLOTS_START+5, 49, 41));
+      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.INPUT_SLOTS_START+0, 11, 22));
+      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.INPUT_SLOTS_START+1, 30, 22));
+      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.INPUT_SLOTS_START+2, 49, 22));
+      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.INPUT_SLOTS_START+3, 11, 41));
+      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.INPUT_SLOTS_START+4, 30, 41));
+      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.INPUT_SLOTS_START+5, 49, 41));
    }
 
    @Override
@@ -93,13 +93,13 @@ public class ContainerBrickOven extends Container
          ItemStack itemstack1 = slot.getStack();
          itemstack = itemstack1.copy();
 
-         if (index < TileEntityBrickOven.NUM_SLOTS)
+         if (index < TileEntityCookingPot.NUM_SLOTS)
          {
-            if (!this.mergeItemStack(itemstack1, TileEntityBrickOven.NUM_SLOTS, this.inventorySlots.size(), true))
+            if (!this.mergeItemStack(itemstack1, TileEntityCookingPot.NUM_SLOTS, this.inventorySlots.size(), true))
             {
                return ItemStack.EMPTY;
             }
-         } else if (!this.mergeItemStack(itemstack1, 0, TileEntityBrickOven.NUM_SLOTS, false))
+         } else if (!this.mergeItemStack(itemstack1, 0, TileEntityCookingPot.NUM_SLOTS, false))
          {
             return ItemStack.EMPTY;
          }

@@ -1,4 +1,4 @@
-package io.github.weird0cats.dynamicchef.items;
+package io.github.weird0cats.dynamicchef.common.items;
 
 import io.github.weird0cats.dynamicchef.DynamicChef;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;

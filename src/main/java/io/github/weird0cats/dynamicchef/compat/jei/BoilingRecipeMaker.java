@@ -3,8 +3,8 @@ package io.github.weird0cats.dynamicchef.compat.jei;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.weird0cats.dynamicchef.crafting.ICookingPotRecipe;
-import io.github.weird0cats.dynamicchef.crafting.Recipes;
+import io.github.weird0cats.dynamicchef.common.crafting.ICookingPotRecipe;
+import io.github.weird0cats.dynamicchef.common.crafting.Recipes;
 import mezz.jei.api.IJeiHelpers;
 
 public class BoilingRecipeMaker

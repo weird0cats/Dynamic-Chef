@@ -10,7 +10,7 @@ import javax.annotation.Nonnull;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
-import io.github.weird0cats.dynamicchef.crafting.IBrickOvenRecipe;
+import io.github.weird0cats.dynamicchef.common.crafting.IBrickOvenRecipe;
 import net.minecraft.item.ItemStack;
 
 public class CrTBrickOvenRecipe implements IBrickOvenRecipe

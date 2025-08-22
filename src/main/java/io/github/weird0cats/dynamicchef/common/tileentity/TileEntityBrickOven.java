@@ -1,10 +1,13 @@
-package io.github.weird0cats.dynamicchef.tileentity;
+package io.github.weird0cats.dynamicchef.common.tileentity;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import io.github.weird0cats.dynamicchef.crafting.ICookingPotRecipe;
-import io.github.weird0cats.dynamicchef.crafting.Recipes;
+import static io.github.weird0cats.dynamicchef.common.blocks.BlockBrickOven.FACING;
+
+import io.github.weird0cats.dynamicchef.common.blocks.ModBlocks;
+import io.github.weird0cats.dynamicchef.common.crafting.IBrickOvenRecipe;
+import io.github.weird0cats.dynamicchef.common.crafting.Recipes;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,10 +27,11 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileEntityCookingPot extends TileEntity implements ITickable 
+public class TileEntityBrickOven extends TileEntity implements ITickable
 {
+   public static boolean keepInventory;
    public static final int RESULT_SLOT = 0;
-   public static final int FUEL_SLOT = 1;
+   public static final int FUEL_SLOT = 1; 
    public static final int INPUT_SLOTS_START = 2;
    public static int NUM_SLOTS = 8;
 
@@ -36,31 +40,31 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
       @Override
       protected void onContentsChanged(int slot)
       {
-         TileEntityCookingPot.this.markDirty();
-         TileEntityCookingPot.this.hasContentChanged = true;
+         TileEntityBrickOven.this.markDirty();
+         TileEntityBrickOven.this.hasContentChanged = true;
       }
    };
 
    public String getName()
    {
-      return "container.dynamicchef.cookingpot";
+      return "container.dynamicchef.brickoven";
    }
-   
+
    @Override
    public ITextComponent getDisplayName()
    {
-		return (ITextComponent) new TextComponentTranslation(this.getName(), new Object[0]);
-	}
+      return (ITextComponent) new TextComponentTranslation(this.getName(), new Object[0]);
+   }
 
    protected int getInternalSize()
    {
       return NUM_SLOTS;
    }
 
-   protected ICookingPotRecipe currentRecipe;
+   protected IBrickOvenRecipe currentRecipe;
    protected boolean hasContentChanged;
 
-   public int potBurnTime;
+   public int ovenBurnTime;
    public int currentItemBurnTime;
    public int cookTime;
    public int totalCookTime;
@@ -68,6 +72,9 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
    @Override
    public void update()
    {
+      boolean check0 = this.isBurning();
+      boolean check1;
+      
       boolean isCooking = this.canCook();
       boolean hasRecipe = isCooking && this.hasValidRecipe();
       if (burnFuel(isCooking && hasRecipe) && isCooking && hasRecipe)
@@ -86,6 +93,35 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
       {
          this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.totalCookTime);
       }
+      check1 = this.isBurning();
+      if (check0 != this.isBurning()) {
+         IBlockState iblockstate = world.getBlockState(pos);
+         TileEntity tileentity = world.getTileEntity(pos);
+
+         keepInventory = true;
+
+         if (check1)
+         {
+            world.setBlockState(pos, ModBlocks.brickOvenLit.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            world.setBlockState(pos, ModBlocks.brickOvenLit.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+         }
+         else
+         {
+            world.setBlockState(pos, ModBlocks.brickOven.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+            world.setBlockState(pos, ModBlocks.brickOven.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
+         }
+         keepInventory = false;
+
+         if (tileentity != null)
+         {
+            tileentity.validate();
+            world.setTileEntity(pos, tileentity);
+         }
+      }
+      if (check1)
+      {
+         this.markDirty();
+      }
    }
 
    public boolean canCook()
@@ -97,11 +133,11 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
               && this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START+4).isEmpty()
               && this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START+5).isEmpty());
    }
-   
+
    public boolean hasValidRecipe()
    {
       //burn check shortcut
-      if (this.potBurnTime <=0 && this.itemStackHandler.getStackInSlot(FUEL_SLOT).isEmpty())
+      if (this.ovenBurnTime <=0 && this.itemStackHandler.getStackInSlot(FUEL_SLOT).isEmpty())
       {
          return false;
       }
@@ -128,7 +164,7 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
          }
          this.cookTime = 0;
          this.currentRecipe = null;
-         for (ICookingPotRecipe recipe : Recipes.cookingPotRecipes)
+         for (IBrickOvenRecipe recipe : Recipes.brickOvenRecipes)
          {
             if (recipe.matches(inputs))
             {
@@ -142,16 +178,16 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
 
    private boolean burnFuel(boolean consumeNewFuel)
    {
-      if (this.potBurnTime > 0)
+      if (this.ovenBurnTime > 0)
       {
-         --this.potBurnTime;
+         --this.ovenBurnTime;
          return true;
       }
       ItemStack fuelStack = itemStackHandler.getStackInSlot(FUEL_SLOT);
       if (consumeNewFuel && !fuelStack.isEmpty())
       {
-         this.potBurnTime = TileEntityFurnace.getItemBurnTime(fuelStack);
-         this.currentItemBurnTime = this.potBurnTime;
+         this.ovenBurnTime = TileEntityFurnace.getItemBurnTime(fuelStack);
+         this.currentItemBurnTime = this.ovenBurnTime;
          if (!world.isRemote)
          {
             Item fuelItem = fuelStack.getItem();
@@ -168,7 +204,7 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
 
    public boolean isBurning()
    {
-      return this.potBurnTime > 0;
+      return this.ovenBurnTime > 0;
    }
 
    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
@@ -188,7 +224,7 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
       if (this.canCook())
       {
          ItemStack[] inputs = new ItemStack[]{ this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START + 0), this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START + 1), this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START + 2), this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START + 3), this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START + 3), this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START + 4), this.itemStackHandler.getStackInSlot(INPUT_SLOTS_START + 5)};
-         ICookingPotRecipe recipe = this.currentRecipe;
+         IBrickOvenRecipe recipe = this.currentRecipe;
          if (recipe.matches(inputs))
          {
             itemStackHandler.insertItem(RESULT_SLOT, recipe.getResult(), false);
@@ -216,7 +252,7 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
       {
          itemStackHandler.deserializeNBT((NBTTagCompound) compound.getTag("items"));
       }
-      this.potBurnTime = compound.getInteger("BurnTime");
+      this.ovenBurnTime = compound.getInteger("BurnTime");
 		this.cookTime = compound.getInteger("CookTime");
 		this.totalCookTime = compound.getInteger("CookTimeTotal");
 		this.currentItemBurnTime = compound.getInteger("ItemBurnTime");
@@ -228,7 +264,7 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
    {
       compound = super.writeToNBT(compound);
       compound.setTag("items", itemStackHandler.serializeNBT());
-      compound.setInteger("BurnTime", (short) this.potBurnTime);
+      compound.setInteger("BurnTime", (short) this.ovenBurnTime);
 		compound.setInteger("CookTime", (short) this.cookTime);
 		compound.setInteger("CookTimeTotal", (short) this.totalCookTime);
 		compound.setInteger("ItemBurnTime", this.currentItemBurnTime);
