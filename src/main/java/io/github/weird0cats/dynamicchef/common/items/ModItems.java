@@ -23,6 +23,7 @@ public class ModItems
    public static ItemFoodBase GRAPE_BERRY;
    public static ItemFoodBase DOUGH;
    public static ItemFoodBase RADCOOKIE;
+   public static ItemFoodBase BEEF_STEW;
 
    public static void init()
    {
@@ -42,6 +43,7 @@ public class ModItems
          {
             if (!worldIn.isRemote)
             {
+               player.attackEntityFrom(DynamicChefUtils.RADIATION_DAMAGE, 1.0F);
                player.addPotionEffect(new PotionEffect(PotionsRegistry.RADIATION_POTION, 1200, 0));
             }
          }
@@ -53,6 +55,10 @@ public class ModItems
             tooltip.add(TextFormatting.GREEN + "" + TextFormatting.ITALIC + I18n.translateToLocalFormatted("tooltip.dynamicchef.uranium_cookie"));
          }
       };
+      BEEF_STEW = new ItemFoodBase("beef_stew", 6, 1.0f, false)
+      {
+
+      };
    }
    
    @SideOnly(Side.CLIENT)
@@ -62,5 +68,6 @@ public class ModItems
       GRAPE_BERRY.initModel();
       DOUGH.initModel();
       RADCOOKIE.initModel();
+      BEEF_STEW.initModel();
    }
 }

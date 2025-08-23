@@ -19,7 +19,7 @@ public class DynamicChef
    public static final String NAME = "Dynamic Chef";
    public static final String VERSION = "0.1.0";
 
-   @SidedProxy(clientSide = "io.github.weird0cats.dynamicchef.proxy.ClientProxy",serverSide = "io.github.weird0cats.dynamicchef.proxy.ServerProxy")
+   @SidedProxy(clientSide = "io.github.weird0cats.dynamicchef.proxy.ClientProxy", serverSide = "io.github.weird0cats.dynamicchef.proxy.CommonProxy")
    public static CommonProxy proxy;
     
    @Mod.Instance
@@ -33,10 +33,6 @@ public class DynamicChef
    {
       logger = event.getModLog();
       proxy.preInit(event);
-
-      if (Loader.isModLoaded("crafttweaker")) {
-			CraftTweakerHelper.preInit();
-		}
    }
 
    @Mod.EventHandler

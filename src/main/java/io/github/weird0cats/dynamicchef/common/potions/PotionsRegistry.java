@@ -6,9 +6,11 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class PotionsRegistry
 {
    public static final Potion RADIATION_POTION = new PotionRadiation();
-
+   public static final Potion NOURISHMENT_POTION = new PotionNourishment();
+   
    public static void init()
    {
       GameRegistry.findRegistry(Potion.class).register(RADIATION_POTION);
+      GameRegistry.findRegistry(Potion.class).register(NOURISHMENT_POTION);
    }
 }

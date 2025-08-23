@@ -36,7 +36,7 @@ public class Recipes
 
    public static void addCookingPotRecipes()
    {
-      cookingPotRecipes.add(new CookingPotRecipe(new ItemStack(Items.COOKED_BEEF), new ItemStack(Items.BEEF)));
+      cookingPotRecipes.add(new CookingPotRecipe(new ItemStack(ModItems.BEEF_STEW), new ItemStack(Items.BEEF), new ItemStack(Items.CARROT), new ItemStack(Items.POTATO)));
    }
 
    public static void addBrickOvenRecipes()

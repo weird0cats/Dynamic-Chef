@@ -3,11 +3,13 @@ package io.github.weird0cats.dynamicchef.common.tileentity;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import io.github.weird0cats.dynamicchef.common.blocks.ModBlocks;
 import io.github.weird0cats.dynamicchef.common.crafting.ICookingPotRecipe;
 import io.github.weird0cats.dynamicchef.common.crafting.Recipes;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -70,7 +72,8 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
    {
       boolean isCooking = this.canCook();
       boolean hasRecipe = isCooking && this.hasValidRecipe();
-      if (burnFuel(isCooking && hasRecipe) && isCooking && hasRecipe)
+      boolean heated = this.heated();
+      if (heated && isCooking && hasRecipe)
       {
          ++this.cookTime;
          if (this.cookTime >= this.currentRecipe.getTime())
@@ -101,10 +104,10 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
    public boolean hasValidRecipe()
    {
       //burn check shortcut
-      if (this.potBurnTime <=0 && this.itemStackHandler.getStackInSlot(FUEL_SLOT).isEmpty())
-      {
-         return false;
-      }
+      //if (this.potBurnTime <=0 && this.itemStackHandler.getStackInSlot(FUEL_SLOT).isEmpty())
+      //{
+      //   return false;
+      //}
       if (this.hasContentChanged)
       {
          this.refreshCurrentRecipe();
@@ -164,6 +167,32 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
          return true;
       }
       return false;
+   }
+
+   public boolean heated()
+   {
+      Block blockUnder = world.getBlockState(pos.down()).getBlock();
+      
+      if (blockUnder == ModBlocks.brickOvenLit)
+      {
+         return true;
+      }
+      if (blockUnder == Blocks.MAGMA)
+      {
+         return true;
+      }
+      if (blockUnder == Blocks.LAVA)
+      {
+         return true;
+      }
+      if (blockUnder == Blocks.FIRE)
+      {
+         return true;
+      }
+      else
+      {
+         return false;
+      }
    }
 
    public boolean isBurning()

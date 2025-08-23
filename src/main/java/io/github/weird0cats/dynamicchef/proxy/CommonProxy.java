@@ -13,6 +13,7 @@ import io.github.weird0cats.dynamicchef.common.potions.PotionsRegistry;
 import io.github.weird0cats.dynamicchef.common.tileentity.TileEntityBrickOven;
 import io.github.weird0cats.dynamicchef.common.tileentity.TileEntityCookingPot;
 import io.github.weird0cats.dynamicchef.common.util.DynamicChefUtils;
+import io.github.weird0cats.dynamicchef.compat.crafttweaker.CraftTweakerHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityParrot;
@@ -25,6 +26,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.EntityInteract;
+import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -43,6 +45,10 @@ public class CommonProxy {
       config = new Configuration(new File(directory.getPath(), "dynamicchef.cfg"));
       Config.readConfig();
       PotionsRegistry.init();
+
+      if (Loader.isModLoaded("crafttweaker")) {
+			CraftTweakerHelper.preInit();
+		}
    }
 
    public void init(FMLInitializationEvent e)
