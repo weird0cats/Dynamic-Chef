@@ -4,14 +4,17 @@ import java.io.File;
 
 import io.github.weird0cats.dynamicchef.Config;
 import io.github.weird0cats.dynamicchef.DynamicChef;
+import io.github.weird0cats.dynamicchef.client.gui.GuiProxy;
 import io.github.weird0cats.dynamicchef.common.blocks.BlockBrickOven;
 import io.github.weird0cats.dynamicchef.common.blocks.BlockCookingPot;
+import io.github.weird0cats.dynamicchef.common.blocks.BlockStove;
 import io.github.weird0cats.dynamicchef.common.blocks.ModBlocks;
 import io.github.weird0cats.dynamicchef.common.crafting.Recipes;
 import io.github.weird0cats.dynamicchef.common.items.ModItems;
 import io.github.weird0cats.dynamicchef.common.potions.PotionsRegistry;
 import io.github.weird0cats.dynamicchef.common.tileentity.TileEntityBrickOven;
 import io.github.weird0cats.dynamicchef.common.tileentity.TileEntityCookingPot;
+import io.github.weird0cats.dynamicchef.common.tileentity.TileEntityStove;
 import io.github.weird0cats.dynamicchef.common.util.DynamicChefUtils;
 import io.github.weird0cats.dynamicchef.compat.crafttweaker.CraftTweakerHelper;
 import net.minecraft.block.Block;
@@ -71,9 +74,11 @@ public class CommonProxy {
       event.getRegistry().register(new BlockCookingPot());
       event.getRegistry().register(new BlockBrickOven("brick_oven", false));
       event.getRegistry().register(new BlockBrickOven("brick_oven_lit", true));
+      event.getRegistry().register(new BlockStove("stove", false));
+      event.getRegistry().register(new BlockStove("stove_lit", true));
       GameRegistry.registerTileEntity(TileEntityCookingPot.class, DynamicChef.MODID + ":cooking_pot_block");
       GameRegistry.registerTileEntity(TileEntityBrickOven.class, DynamicChef.MODID + ":brick_oven_block");
-
+      GameRegistry.registerTileEntity(TileEntityStove.class, DynamicChef.MODID + ":stove_block");
    }
 
    @SubscribeEvent
@@ -83,6 +88,8 @@ public class CommonProxy {
       event.getRegistry().register(new ItemBlock(ModBlocks.cookingPot).setRegistryName(ModBlocks.cookingPot.getRegistryName()));
       event.getRegistry().register(new ItemBlock(ModBlocks.brickOven).setRegistryName(ModBlocks.brickOven.getRegistryName()));
       event.getRegistry().register(new ItemBlock(ModBlocks.brickOvenLit.setLightLevel(0.875f)).setRegistryName(ModBlocks.brickOvenLit.getRegistryName()));
+      event.getRegistry().register(new ItemBlock(ModBlocks.stove).setRegistryName(ModBlocks.stove.getRegistryName()));
+      event.getRegistry().register(new ItemBlock(ModBlocks.stoveLit.setLightLevel(0.875f)).setRegistryName(ModBlocks.stoveLit.getRegistryName()));
    }
 
    @SubscribeEvent

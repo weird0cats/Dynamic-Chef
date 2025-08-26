@@ -7,23 +7,23 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-
-public class ContainerCookingPot extends Container 
+public class ContainerStove extends Container
 {
-   private final TileEntityCookingPot te;
+   private final TileEntityStove te;
 
-   public ContainerCookingPot(IInventory playerInventory, TileEntityCookingPot te)
+   public ContainerStove(IInventory playerInventory, TileEntityStove te)
    {
       this.te=te;
       addOwnSlots();
       addPlayerSlots(playerInventory);
    }
 
-   public TileEntityCookingPot getTile()
+   public TileEntityStove getTile()
    {
       return te;
    }
@@ -51,20 +51,14 @@ public class ContainerCookingPot extends Container
    private void addOwnSlots()
    {
       IItemHandler itemHandler = this.te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.RESULT_SLOT, 123, 35)
+      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityStove.FUEL_SLOT, 35, 35)
       {
          @Override
          public boolean isItemValid(@Nonnull ItemStack stack)
          {
-            return false;
+            return super.isItemValid(stack) && TileEntityFurnace.isItemFuel(stack);
          }
       });
-      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.INPUT_SLOTS_START+0, 11, 22));
-      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.INPUT_SLOTS_START+1, 30, 22));
-      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.INPUT_SLOTS_START+2, 49, 22));
-      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.INPUT_SLOTS_START+3, 11, 41));
-      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.INPUT_SLOTS_START+4, 30, 41));
-      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityCookingPot.INPUT_SLOTS_START+5, 49, 41));
    }
 
    @Override
@@ -76,33 +70,36 @@ public class ContainerCookingPot extends Container
    @Override
    public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
    {
-      ItemStack itemstack = ItemStack.EMPTY;
+      ItemStack itemStack = ItemStack.EMPTY;
       Slot slot = this.inventorySlots.get(index);
 
       if (slot != null && slot.getHasStack())
       {
-         ItemStack itemstack1 = slot.getStack();
-         itemstack = itemstack1.copy();
+         ItemStack itemStack1 = slot.getStack();
+         itemStack = itemStack1.copy();
 
-         if (index < TileEntityCookingPot.NUM_SLOTS)
+         if (index < TileEntityStove.NUM_SLOTS)
          {
-            if (!this.mergeItemStack(itemstack1, TileEntityCookingPot.NUM_SLOTS, this.inventorySlots.size(), true))
+            if (!this.mergeItemStack(itemStack1, TileEntityStove.NUM_SLOTS, this.inventorySlots.size(), true))
             {
                return ItemStack.EMPTY;
             }
-         } else if (!this.mergeItemStack(itemstack1, 0, TileEntityCookingPot.NUM_SLOTS, false))
+         }
+         else if (!this.mergeItemStack(itemStack1, 0, TileEntityStove.NUM_SLOTS, false))
          {
             return ItemStack.EMPTY;
          }
 
-         if (itemstack1.isEmpty())
+         if (itemStack1.isEmpty())
          {
             slot.putStack(ItemStack.EMPTY);
-         } else {
+         }
+         else
+         {
             slot.onSlotChanged();
          }
       }
 
-      return itemstack;
+      return itemStack;
    }
 }

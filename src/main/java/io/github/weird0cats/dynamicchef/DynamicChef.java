@@ -2,10 +2,8 @@ package io.github.weird0cats.dynamicchef;
 
 import org.apache.logging.log4j.Logger;
 
-import io.github.weird0cats.dynamicchef.compat.crafttweaker.CraftTweakerHelper;
 import io.github.weird0cats.dynamicchef.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;

@@ -10,11 +10,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
@@ -29,9 +27,8 @@ import net.minecraftforge.items.ItemStackHandler;
 public class TileEntityCookingPot extends TileEntity implements ITickable 
 {
    public static final int RESULT_SLOT = 0;
-   public static final int FUEL_SLOT = 1;
-   public static final int INPUT_SLOTS_START = 2;
-   public static int NUM_SLOTS = 8;
+   public static final int INPUT_SLOTS_START = 1;
+   public static int NUM_SLOTS = 7;
 
    protected ItemStackHandler itemStackHandler = new ItemStackHandler(NUM_SLOTS)
    {
@@ -143,31 +140,31 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
       }
    }
 
-   private boolean burnFuel(boolean consumeNewFuel)
-   {
-      if (this.potBurnTime > 0)
-      {
-         --this.potBurnTime;
-         return true;
-      }
-      ItemStack fuelStack = itemStackHandler.getStackInSlot(FUEL_SLOT);
-      if (consumeNewFuel && !fuelStack.isEmpty())
-      {
-         this.potBurnTime = TileEntityFurnace.getItemBurnTime(fuelStack);
-         this.currentItemBurnTime = this.potBurnTime;
-         if (!world.isRemote)
-         {
-            Item fuelItem = fuelStack.getItem();
-            fuelStack.shrink(1);
-            if (fuelStack.isEmpty())
-            {
-               itemStackHandler.setStackInSlot(FUEL_SLOT, fuelItem.getContainerItem(fuelStack));
-            }
-         }
-         return true;
-      }
-      return false;
-   }
+   // private boolean burnFuel(boolean consumeNewFuel)
+   // {
+   //    if (this.potBurnTime > 0)
+   //    {
+   //       --this.potBurnTime;
+   //       return true;
+   //    }
+   //    ItemStack fuelStack = itemStackHandler.getStackInSlot(FUEL_SLOT);
+   //    if (consumeNewFuel && !fuelStack.isEmpty())
+   //    {
+   //       this.potBurnTime = TileEntityFurnace.getItemBurnTime(fuelStack);
+   //       this.currentItemBurnTime = this.potBurnTime;
+   //       if (!world.isRemote)
+   //       {
+   //          Item fuelItem = fuelStack.getItem();
+   //          fuelStack.shrink(1);
+   //          if (fuelStack.isEmpty())
+   //          {
+   //             itemStackHandler.setStackInSlot(FUEL_SLOT, fuelItem.getContainerItem(fuelStack));
+   //          }
+   //       }
+   //       return true;
+   //    }
+   //    return false;
+   // }
 
    public boolean heated()
    {
@@ -185,15 +182,7 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
       {
          return true;
       }
-      if (blockUnder == Blocks.FIRE)
-      {
-         return true;
-      }
-      else
-      {
-         return false;
-      }
-   }
+      return blockUnder == Blocks.FIRE;   }
 
    public boolean isBurning()
    {
@@ -239,7 +228,7 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
    
    @Override
    public void readFromNBT(NBTTagCompound compound)
-   {
+   { 
       super.readFromNBT(compound);
       if (compound.hasKey("items"))
       {
