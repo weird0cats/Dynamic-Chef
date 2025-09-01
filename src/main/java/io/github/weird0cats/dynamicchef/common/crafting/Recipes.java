@@ -31,7 +31,6 @@ public class Recipes
    {
       addCookingPotRecipes();
       addBrickOvenRecipes();
-      System.out.print("Recipes added successfully!\n");
    }
 
    public static void addCookingPotRecipes()

@@ -21,7 +21,7 @@ public class BakingRecipeCategory extends BlankRecipeCategory
    private final IDrawable background;
    private final String name;
    
-   public static ResourceLocation texture = new ResourceLocation("dynamicchef:textures/gui/jei_cooking.png");
+   public static ResourceLocation texture = new ResourceLocation("dynamicchef:textures/gui/jei_recipe_baking.png");
 
    protected IDrawableAnimated flame;
    protected IDrawableAnimated arrow;
