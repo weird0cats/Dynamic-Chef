@@ -89,10 +89,12 @@ public class TileEntityBrickOven extends TileEntity implements ITickable
             }
          }
       }
+
       else if (this.cookTime > 0)
       {
          this.cookTime = MathHelper.clamp(this.cookTime - 2, 0, this.totalCookTime);
       }
+      
       check1 = this.isBurning();
       if (check0 != this.isBurning()) {
          IBlockState iblockstate = world.getBlockState(pos);

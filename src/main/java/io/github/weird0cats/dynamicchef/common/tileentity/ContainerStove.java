@@ -51,7 +51,7 @@ public class ContainerStove extends Container
    private void addOwnSlots()
    {
       IItemHandler itemHandler = this.te.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
-      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityStove.FUEL_SLOT, 35, 35)
+      addSlotToContainer(new SlotItemHandler(itemHandler, TileEntityStove.FUEL_SLOT, 82, 32)
       {
          @Override
          public boolean isItemValid(@Nonnull ItemStack stack)

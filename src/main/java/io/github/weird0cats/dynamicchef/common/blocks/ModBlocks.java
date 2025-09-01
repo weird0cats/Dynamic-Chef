@@ -16,10 +16,10 @@ public class ModBlocks
    @GameRegistry.ObjectHolder("dynamicchef:brick_oven_lit")
    public static BlockBrickOven brickOvenLit;
 
-   @GameRegistry.ObjectHolder("dynamicchef:stove")
+   @GameRegistry.ObjectHolder("dynamicchef:brick_stove")
    public static BlockStove stove;
 
-   @GameRegistry.ObjectHolder("dynamicchef:stove_lit")
+   @GameRegistry.ObjectHolder("dynamicchef:brick_stove_lit")
    public static BlockStove stoveLit;
    
    @SideOnly(Side.CLIENT)

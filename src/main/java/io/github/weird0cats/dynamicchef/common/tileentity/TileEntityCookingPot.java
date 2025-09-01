@@ -174,6 +174,10 @@ public class TileEntityCookingPot extends TileEntity implements ITickable
       {
          return true;
       }
+      if (blockUnder == ModBlocks.stoveLit)
+      {
+         return true;
+      }
       if (blockUnder == Blocks.MAGMA)
       {
          return true;

@@ -6,13 +6,17 @@ item.dynamicchef.lupa_berry.name=Lupa Berry
 item.dynamicchef.vitus_berry.name=Vitus Berry
 item.dynamicchef.dough.name=Dough
 item.dynamicchef.uranium_cookie.name=Uranium Cookie
+item.dynamicchef.beef_stew.name=Beef Stew
 
 #Blocks
 tile.dynamicchef.cooking_pot.name=Cooking Pot
 tile.dynamicchef.brick_oven.name=Brick Oven
-tile.dynamicchef.brick_ovenlit.name=Brick Oven
+tile.dynamicchef.brick_stove.name=Brick Oven
+tile.dynamicchef.brick_oven_lit.name=Brick Stove
+tile.dynamicchef.brick_stove_lit.name=Brick Stove
 container.dynamicchef.brickoven=Brick Oven
 container.dynamicchef.cookingpot=Cooking Pot
+container.dynamicchef.stove=Brick Stove
 
 #Potion Effects
 effect.radiation=Radiation

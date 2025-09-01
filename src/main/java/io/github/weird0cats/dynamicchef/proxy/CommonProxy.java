@@ -74,11 +74,11 @@ public class CommonProxy {
       event.getRegistry().register(new BlockCookingPot());
       event.getRegistry().register(new BlockBrickOven("brick_oven", false));
       event.getRegistry().register(new BlockBrickOven("brick_oven_lit", true));
-      event.getRegistry().register(new BlockStove("stove", false));
-      event.getRegistry().register(new BlockStove("stove_lit", true));
+      event.getRegistry().register(new BlockStove("brick_stove", false));
+      event.getRegistry().register(new BlockStove("brick_stove_lit", true));
       GameRegistry.registerTileEntity(TileEntityCookingPot.class, DynamicChef.MODID + ":cooking_pot_block");
       GameRegistry.registerTileEntity(TileEntityBrickOven.class, DynamicChef.MODID + ":brick_oven_block");
-      GameRegistry.registerTileEntity(TileEntityStove.class, DynamicChef.MODID + ":stove_block");
+      GameRegistry.registerTileEntity(TileEntityStove.class, DynamicChef.MODID + ":brick_stove_block");
    }
 
    @SubscribeEvent

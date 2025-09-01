@@ -1,0 +1,16 @@
+{
+   "forge_marker": 1,
+   "defaults": {
+      "model": "dynamicchef:brick_stove"
+   },
+   "variants": {
+      "normal": [{}],
+      "inventory": [{}],
+      "facing": {
+         "north": {},
+         "east": {"y":90},
+         "south": {"y":180},
+         "west": {"y":270}
+      }
+   }
+}

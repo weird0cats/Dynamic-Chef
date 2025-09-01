@@ -41,14 +41,8 @@ public class CookingPotGui extends GuiContainer
       mc.getTextureManager().bindTexture(background);
       drawTexturedModalRect(guiLeft, guiTop, 0, 0, xSize, ySize);
 
-      if (te.isBurning())
-      {
-			int k = this.getBurnLeftScaled(13);
-			this.drawTexturedModalRect(guiLeft + 70, guiTop + 45 + 12 - k, 176, 12 - k, 14, k + 1);
-		}
-
       int l = this.getCookProgressScaled(23);
-		this.drawTexturedModalRect(guiLeft + 90, guiTop + 35, 176, 14, l, 17);
+		this.drawTexturedModalRect(guiLeft + 90, guiTop + 35, 176, 0, l, 17);
    }
    
    @Override
@@ -65,12 +59,4 @@ public class CookingPotGui extends GuiContainer
 		return j != 0 && i != 0 ? (i * pixels / j) + 1 : 0;
 	}
 
-   private int getBurnLeftScaled(int pixels) {
-		int i = this.te.currentItemBurnTime;
-		if (i == 0)
-      {
-			i = 200;
-		}
-		return this.te.potBurnTime * pixels / i;
-	}
 }

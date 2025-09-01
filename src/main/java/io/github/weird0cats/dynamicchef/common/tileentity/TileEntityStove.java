@@ -1,10 +1,9 @@
 package io.github.weird0cats.dynamicchef.common.tileentity;
 
-import static io.github.weird0cats.dynamicchef.common.blocks.BlockStove.FACING;
-
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import static io.github.weird0cats.dynamicchef.common.blocks.BlockStove.FACING;
 import io.github.weird0cats.dynamicchef.common.blocks.ModBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -65,25 +64,9 @@ public class TileEntityStove extends TileEntity implements ITickable
    {
       boolean check0 = this.isBurning();
       boolean check1;
-
-      if (this.stoveBurnTime > 0)
+      if (burnFuel())
       {
-         --this.stoveBurnTime;
-      }
-      ItemStack fuelStack = itemStackHandler.getStackInSlot(FUEL_SLOT);
-      if (!fuelStack.isEmpty())
-      {
-         this.stoveBurnTime = TileEntityFurnace.getItemBurnTime(fuelStack);
-         this.currentItemBurnTime = this.stoveBurnTime;
-         if (!world.isRemote)
-         {
-            Item fuelItem = fuelStack.getItem();
-            fuelStack.shrink(1);
-            if (fuelStack.isEmpty())
-            {
-               itemStackHandler.setStackInSlot((FUEL_SLOT), fuelItem.getContainerItem(fuelStack));
-            }
-         }
+         
       }
       
       check1 = this.isBurning();
@@ -104,6 +87,7 @@ public class TileEntityStove extends TileEntity implements ITickable
             world.setBlockState(pos, ModBlocks.stove.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
             world.setBlockState(pos, ModBlocks.stove.getDefaultState().withProperty(FACING, iblockstate.getValue(FACING)), 3);
          }
+
          keepInventory = false;
          if (tileentity != null)
          {
@@ -117,10 +101,37 @@ public class TileEntityStove extends TileEntity implements ITickable
    {
       return this.stoveBurnTime > 0;
    }
+
+   private boolean burnFuel()
+   {
+      if (this.stoveBurnTime > 0)
+      {
+         --this.stoveBurnTime;
+         return true;
+      }
+      ItemStack fuelStack = itemStackHandler.getStackInSlot(FUEL_SLOT);
+      if (!fuelStack.isEmpty())
+      {
+         this.stoveBurnTime = TileEntityFurnace.getItemBurnTime(fuelStack);
+         this.currentItemBurnTime = this.stoveBurnTime;
+         if (!world.isRemote)
+         {
+            Item fuelItem = fuelStack.getItem();
+            fuelStack.shrink(1);
+            if (fuelStack.isEmpty())
+            {
+               itemStackHandler.setStackInSlot(FUEL_SLOT, fuelItem.getContainerItem(fuelStack));
+            }
+         }
+         return true;
+      }
+      return false;
+   }
+
    public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
    {
       this.invalidate();
-      if (itemStackHandler != null && world.isRemote)
+      if (itemStackHandler != null && !world.isRemote)
       {
          for (int i=0; i < itemStackHandler.getSlots(); i++)
          {
@@ -128,7 +139,6 @@ public class TileEntityStove extends TileEntity implements ITickable
          }
       }
    }
-
    
    public boolean canInteractWith(EntityPlayer playerIn)
    {

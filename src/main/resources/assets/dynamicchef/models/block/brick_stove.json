@@ -1,0 +1,12 @@
+{
+   "parent": "block/cube",
+   "textures": {
+      "particle": "dynamicchef:blocks/brick_oven_side",
+      "down": "dynamicchef:blocks/brick_oven_bottom",
+      "up": "dynamicchef:blocks/brick_stove_top_off",
+      "east": "dynamicchef:blocks/brick_oven_side",
+      "west": "dynamicchef:blocks/brick_oven_side",
+      "north": "dynamicchef:blocks/brick_stove_front_off",
+      "south": "dynamicchef:blocks/brick_oven_side"
+   }
+}

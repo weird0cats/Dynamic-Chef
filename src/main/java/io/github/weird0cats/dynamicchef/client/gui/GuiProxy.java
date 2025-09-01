@@ -2,8 +2,10 @@ package io.github.weird0cats.dynamicchef.client.gui;
 
 import io.github.weird0cats.dynamicchef.common.tileentity.ContainerBrickOven;
 import io.github.weird0cats.dynamicchef.common.tileentity.ContainerCookingPot;
+import io.github.weird0cats.dynamicchef.common.tileentity.ContainerStove;
 import io.github.weird0cats.dynamicchef.common.tileentity.TileEntityBrickOven;
 import io.github.weird0cats.dynamicchef.common.tileentity.TileEntityCookingPot;
+import io.github.weird0cats.dynamicchef.common.tileentity.TileEntityStove;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -25,6 +27,10 @@ public class GuiProxy implements IGuiHandler
       {
          return new ContainerBrickOven(player.inventory, (TileEntityBrickOven) te);
       }
+      if (te instanceof TileEntityStove)
+      {
+         return new ContainerStove(player.inventory, (TileEntityStove) te);
+      }
       return null;
    }
 
@@ -41,6 +47,11 @@ public class GuiProxy implements IGuiHandler
       {
          TileEntityBrickOven containerTileEntity = (TileEntityBrickOven) te;
          return new BrickOvenGui(new ContainerBrickOven(player.inventory, containerTileEntity), player.inventory);
+      }
+      if (te instanceof TileEntityStove)
+      {
+         TileEntityStove containerTileEntity = (TileEntityStove) te;
+         return new BrickStoveGui(new ContainerStove(player.inventory, containerTileEntity), player.inventory);
       }
       return null;
    }

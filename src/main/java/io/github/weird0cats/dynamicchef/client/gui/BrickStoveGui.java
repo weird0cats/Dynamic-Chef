@@ -7,17 +7,17 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
-public class StoveGui extends GuiContainer
+public class BrickStoveGui extends GuiContainer
 {
    public static final int WIDTH = 176;
    public static final int HEIGHT = 166;
 
-   public static final ResourceLocation background = new ResourceLocation(DynamicChef.MODID, "textures/gui/stove.png");
+   public static final ResourceLocation background = new ResourceLocation(DynamicChef.MODID, "textures/gui/brick_stove.png");
 
    private final TileEntityStove te;
    private final InventoryPlayer playerInv;
 
-   public StoveGui(ContainerStove container, InventoryPlayer playerInv)
+   public BrickStoveGui(ContainerStove container, InventoryPlayer playerInv)
    {
       super(container);
 
@@ -44,7 +44,7 @@ public class StoveGui extends GuiContainer
       if (te.isBurning())
       {
          int k = this.getBurnLeftScaled(13);
-         this.drawTexturedModalRect(guiLeft + 70, guiTop + 45 + 12 - k, 176, 12 - k, 14, k + 1);
+         this.drawTexturedModalRect(guiLeft + 83, guiTop + 50 + 12 - k, 176, 12 - k, 14, k + 1);
       }
    }
 
